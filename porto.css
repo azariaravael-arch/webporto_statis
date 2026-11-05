@@ -1,0 +1,1707 @@
+/* ===================================================================
+   SUPERHERO & ADVENTURE QUEST PARALLAX PORTFOLIO
+   Hero: RAVAEL ASARYA ROMPAS - "THE CODE GUARDIAN / TECH HERO"
+   =================================================================== */
+
+:root {
+  /* Cosmic & Heroic Theme Colors */
+  --bg-deep-space: #070913;
+  --bg-comic-dark: #0d1124;
+  --bg-card-glass: rgba(18, 24, 48, 0.75);
+  --bg-card-hover: rgba(26, 36, 74, 0.85);
+  
+  /* Hero Energy Accents */
+  --hero-gold: #ffbe1a;
+  --hero-gold-glow: rgba(255, 190, 26, 0.4);
+  --hero-cyan: #00f2fe;
+  --hero-cyan-glow: rgba(0, 242, 254, 0.4);
+  --hero-crimson: #ff3366;
+  --hero-crimson-glow: rgba(255, 51, 102, 0.4);
+  --hero-violet: #7928ca;
+  --hero-emerald: #00f0aa;
+  
+  /* Text */
+  --text-white: #ffffff;
+  --text-dim: #9aa4bf;
+  --text-muted: #5e6b8c;
+  
+  /* Borders */
+  --border-neon: rgba(0, 242, 254, 0.25);
+  --border-gold: rgba(255, 190, 26, 0.3);
+  --border-glass: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
+  --font-hero: 'Bebas Neue', 'Russo One', Impact, sans-serif;
+  --font-heading: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* CSS Reset & Basics */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-deep-space);
+  color: var(--text-white);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep-space);
+  color: var(--text-white);
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Comic Halftone & Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(rgba(0, 242, 254, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(255, 190, 26, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px, 16px 16px;
+  background-position: 0 0, 8px 8px;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Cosmic Nebula Atmosphere */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(121, 40, 202, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(0, 242, 254, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(255, 51, 102, 0.12) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===================================================================
+   INTERACTIVE CANVAS & HUD TOP BAR
+   =================================================================== */
+#heroCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top Quest Power Indicator / Progress */
+.power-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hero-crimson), var(--hero-gold), var(--hero-cyan));
+  box-shadow: 0 0 14px var(--hero-cyan);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+}
+
+/* ===================================================================
+   HERO NAVIGATION (SUPERHERO HUD NAVBAR)
+   =================================================================== */
+.hero-nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 1160px);
+  background: rgba(13, 17, 36, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-neon);
+  border-radius: 40px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 242, 254, 0.08);
+  transition: var(--transition);
+}
+
+.hero-nav.nav-scrolled {
+  background: rgba(7, 9, 19, 0.95);
+  border-color: var(--hero-gold);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px var(--hero-gold-glow);
+}
+
+.nav-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-emblem {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--hero-gold), var(--hero-crimson));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: 900;
+  box-shadow: 0 0 15px var(--hero-gold-glow);
+  animation: emblemPulse 4s infinite alternate;
+}
+
+@keyframes emblemPulse {
+  0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 5px var(--hero-gold)); }
+  100% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 15px var(--hero-crimson)); }
+}
+
+.hero-brand-name {
+  font-family: var(--font-hero);
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.hero-brand-sub {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--hero-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-quest-menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-quest-menu a {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-quest-menu a:hover,
+.nav-quest-menu a.active {
+  color: var(--hero-cyan);
+  text-shadow: 0 0 8px var(--hero-cyan-glow);
+}
+
+.nav-quest-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--hero-cyan);
+  transition: var(--transition);
+}
+
+.nav-quest-menu a:hover::after,
+.nav-quest-menu a.active::after {
+  width: 100%;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Sound Effect Button */
+.btn-sound-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-neon);
+  background: rgba(0, 242, 254, 0.08);
+  color: var(--hero-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-sound-toggle:hover {
+  background: var(--hero-cyan);
+  color: #000;
+  box-shadow: 0 0 15px var(--hero-cyan-glow);
+}
+
+/* CTA Summon Hero */
+.btn-summon-hero {
+  background: linear-gradient(135deg, var(--hero-gold) 0%, #ff8b1f 100%);
+  color: #000;
+  font-family: var(--font-hero);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 15px var(--hero-gold-glow);
+  transition: var(--transition-spring);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-summon-hero:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 25px var(--hero-gold);
+  color: #000;
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.4rem;
+  color: var(--hero-cyan);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===================================================================
+   HERO SECTION - MULTI-LAYER PARALLAX "MISSION COMMENCE"
+   =================================================================== */
+.hero-scene {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Parallax Floating Runes & Comic Elements */
+.parallax-badge {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.1s ease-out;
+}
+
+.p-rune-1 { top: 18%; left: 6%; color: var(--hero-gold); font-size: 2.2rem; filter: drop-shadow(0 0 10px var(--hero-gold)); }
+.p-rune-2 { top: 38%; right: 5%; color: var(--hero-cyan); font-size: 2.5rem; filter: drop-shadow(0 0 12px var(--hero-cyan)); }
+.p-rune-3 { bottom: 25%; left: 8%; color: var(--hero-crimson); font-size: 1.8rem; filter: drop-shadow(0 0 8px var(--hero-crimson)); }
+.p-rune-4 { bottom: 15%; right: 12%; color: var(--hero-emerald); font-size: 2rem; filter: drop-shadow(0 0 10px var(--hero-emerald)); }
+
+/* Hero Center Comic HUD Layout */
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tagline-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid var(--border-neon);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--hero-cyan);
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.hero-tagline-box .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--hero-emerald);
+  box-shadow: 0 0 8px var(--hero-emerald);
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.hero-main-title {
+  font-family: var(--font-hero);
+  font-size: clamp(3.8rem, 8.5vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-main-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 15%, var(--hero-gold) 60%, #ff5238 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  filter: drop-shadow(0 4px 15px rgba(255, 190, 26, 0.25));
+}
+
+.hero-main-title .outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--hero-cyan);
+  display: block;
+  letter-spacing: 4px;
+}
+
+.hero-lore-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 580px;
+  margin-bottom: 30px;
+}
+
+.hero-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.hero-stat-badge {
+  background: rgba(18, 24, 48, 0.8);
+  border: 1px solid var(--border-glass);
+  border-left: 3px solid var(--hero-gold);
+  border-radius: 12px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+}
+
+.hero-stat-badge:hover {
+  transform: translateY(-3px);
+  border-color: var(--hero-gold);
+  box-shadow: 0 8px 20px var(--hero-gold-glow);
+}
+
+.stat-icon {
+  font-size: 1.3rem;
+  color: var(--hero-gold);
+}
+
+.stat-value {
+  font-family: var(--font-hero);
+  font-size: 1.4rem;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.btn-quest-primary {
+  background: linear-gradient(135deg, var(--hero-cyan) 0%, #0072ff 100%);
+  color: #000;
+  font-family: var(--font-hero);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 25px var(--hero-cyan-glow);
+  transition: var(--transition-spring);
+}
+
+.btn-quest-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 35px var(--hero-cyan);
+  color: #000;
+}
+
+.btn-quest-ghost {
+  border: 1px solid var(--border-neon);
+  background: rgba(13, 17, 36, 0.6);
+  color: var(--text-white);
+  font-family: var(--font-hero);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.btn-quest-ghost:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--hero-cyan);
+  color: var(--hero-cyan);
+  transform: translateY(-3px);
+}
+
+/* ===================================================================
+   HERO 3D TILT DOSSIER CARD (CHARACTER PROFILE)
+   =================================================================== */
+.hero-dossier-wrapper {
+  perspective: 1200px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-dossier-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(165deg, rgba(20, 28, 58, 0.9) 0%, rgba(10, 14, 30, 0.95) 100%);
+  border: 2px solid var(--border-neon);
+  border-radius: 24px;
+  padding: 24px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1), box-shadow 0.3s ease;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 242, 254, 0.2);
+}
+
+.hero-dossier-card:hover {
+  border-color: var(--hero-gold);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 40px var(--hero-gold-glow);
+}
+
+/* Comic Corner Brackets */
+.comic-bracket {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--hero-gold);
+}
+.cb-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.cb-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.cb-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.cb-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+.dossier-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.dossier-id {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--hero-gold);
+  letter-spacing: 1px;
+}
+
+.dossier-class {
+  background: rgba(255, 51, 102, 0.2);
+  color: var(--hero-crimson);
+  border: 1px solid var(--hero-crimson);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.dossier-image-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 330px;
+  background: #060914;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  margin-bottom: 18px;
+}
+
+.dossier-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.1) brightness(0.95);
+  transition: transform 0.5s ease;
+}
+
+.hero-dossier-card:hover .dossier-image-frame img {
+  transform: scale(1.05);
+}
+
+.dossier-hud-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(7, 9, 19, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-neon);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dossier-name {
+  font-family: var(--font-hero);
+  font-size: 1.3rem;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.dossier-origin {
+  font-size: 0.75rem;
+  color: var(--hero-cyan);
+  font-family: var(--font-mono);
+}
+
+/* Dossier Power Gauges */
+.dossier-powers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.power-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.power-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.power-label-wrap span:first-child {
+  color: var(--text-dim);
+}
+
+.power-label-wrap span:last-child {
+  color: var(--hero-gold);
+  font-family: var(--font-mono);
+}
+
+.power-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.power-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--hero-cyan), var(--hero-gold));
+  box-shadow: 0 0 10px var(--hero-cyan);
+  transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ===================================================================
+   SECTION HEADER COMMON STYLING
+   =================================================================== */
+.quest-section {
+  padding: 110px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-head-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 190, 26, 0.1);
+  border: 1px solid var(--border-gold);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--hero-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: var(--font-hero);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.section-subtitle {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+/* ===================================================================
+   SECTION: HERO ORIGIN & BIO (ABOUT ME)
+   =================================================================== */
+.origin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.origin-lore-card {
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 36px;
+  position: relative;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.origin-lore-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hero-cyan), transparent);
+}
+
+.origin-lore-card p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #cad3eb;
+  margin-bottom: 20px;
+}
+
+.origin-lore-card p strong {
+  color: var(--hero-gold);
+}
+
+.origin-attributes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.attr-item {
+  background: rgba(7, 9, 19, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: var(--transition);
+}
+
+.attr-item:hover {
+  border-color: var(--hero-cyan);
+  transform: translateX(4px);
+  background: rgba(0, 242, 254, 0.05);
+}
+
+.attr-icon {
+  font-size: 1.4rem;
+  color: var(--hero-cyan);
+}
+
+.attr-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.attr-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* Comic Origin Panels Right Side */
+.comic-panels-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comic-panel {
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-left: 4px solid var(--hero-crimson);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  transition: var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.comic-panel:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--hero-crimson);
+  box-shadow: 0 15px 35px var(--hero-crimson-glow);
+}
+
+.comic-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.comic-panel-header i {
+  font-size: 1.3rem;
+  color: var(--hero-crimson);
+}
+
+.comic-panel-header h4 {
+  font-family: var(--font-hero);
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--text-white);
+}
+
+.comic-panel p {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ===================================================================
+   SECTION: QUEST LOG (WORK EXPERIENCE & EDUCATION)
+   =================================================================== */
+.quest-timeline-container {
+  margin-top: 60px;
+  position: relative;
+}
+
+.quest-timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--hero-gold) 0%, var(--hero-cyan) 50%, var(--hero-crimson) 100%);
+  box-shadow: 0 0 12px var(--hero-cyan-glow);
+}
+
+.quest-card {
+  position: relative;
+  margin-left: 70px;
+  margin-bottom: 40px;
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(12px);
+  transition: var(--transition-spring);
+}
+
+.quest-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--hero-gold);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--hero-gold-glow);
+}
+
+.quest-node {
+  position: absolute;
+  left: -53px;
+  top: 28px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-deep-space);
+  border: 3px solid var(--hero-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--hero-gold);
+  box-shadow: 0 0 15px var(--hero-gold);
+  z-index: 2;
+}
+
+.quest-top-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.quest-badge-status {
+  background: rgba(0, 240, 170, 0.15);
+  color: var(--hero-emerald);
+  border: 1px solid var(--hero-emerald);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.quest-period {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--hero-gold);
+}
+
+.quest-title {
+  font-family: var(--font-hero);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: var(--text-white);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.quest-company {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--hero-cyan);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quest-missions-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.quest-missions-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #ccd5ec;
+  line-height: 1.6;
+}
+
+.quest-missions-list li::before {
+  content: "⚡";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.85rem;
+  color: var(--hero-gold);
+}
+
+.quest-loot-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.loot-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+.loot-pill:hover {
+  background: var(--hero-gold);
+  color: #000;
+  border-color: var(--hero-gold);
+}
+
+/* ===================================================================
+   SECTION: SKILL ARSENAL (POWERS & ABILITIES)
+   =================================================================== */
+.arsenal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.arsenal-card {
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 30px;
+  backdrop-filter: blur(14px);
+  transition: var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.arsenal-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--hero-cyan);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--hero-cyan-glow);
+}
+
+.arsenal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 14px;
+}
+
+.arsenal-icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid var(--border-neon);
+  color: var(--hero-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.arsenal-card:nth-child(2) .arsenal-icon-box {
+  background: rgba(255, 190, 26, 0.1);
+  border-color: var(--border-gold);
+  color: var(--hero-gold);
+}
+
+.arsenal-card:nth-child(3) .arsenal-icon-box {
+  background: rgba(255, 51, 102, 0.1);
+  border-color: rgba(255, 51, 102, 0.3);
+  color: var(--hero-crimson);
+}
+
+.arsenal-header h3 {
+  font-family: var(--font-hero);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: var(--text-white);
+}
+
+.arsenal-skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.skill-power-pill {
+  background: rgba(7, 9, 19, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.skill-power-pill:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--hero-cyan);
+  transform: scale(1.05);
+}
+
+.skill-power-pill i {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--hero-cyan);
+}
+
+.arsenal-card:nth-child(2) .skill-power-pill i {
+  color: var(--hero-gold);
+}
+
+.skill-power-pill span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* Softskill Orbs */
+.softskills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.softskill-orb {
+  background: rgba(255, 51, 102, 0.1);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.softskill-orb:hover {
+  background: var(--hero-crimson);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--hero-crimson-glow);
+}
+
+/* ===================================================================
+   SECTION: GUILD & FACTION (ORGANIZATION & LANGUAGES)
+   =================================================================== */
+.guild-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.guild-card {
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+}
+
+.guild-role-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 16px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.guild-role-item:last-child {
+  border-bottom: none;
+}
+
+.guild-role-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 190, 26, 0.15);
+  border: 1px solid var(--border-gold);
+  color: var(--hero-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.guild-role-info h4 {
+  font-family: var(--font-hero);
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+
+.guild-role-info p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* Language Cards */
+.language-cards-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lang-module {
+  background: rgba(7, 9, 19, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.lang-module:hover {
+  border-color: var(--hero-emerald);
+  transform: translateX(6px);
+  background: rgba(0, 240, 170, 0.05);
+}
+
+.lang-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lang-flag-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 240, 170, 0.15);
+  color: var(--hero-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.lang-details h5 {
+  font-family: var(--font-hero);
+  font-size: 1.3rem;
+  color: var(--text-white);
+}
+
+.lang-details span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.lang-rank-badge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  background: rgba(0, 240, 170, 0.15);
+  color: var(--hero-emerald);
+  border: 1px solid var(--hero-emerald);
+}
+
+/* ===================================================================
+   SECTION: EPIC WORK SHOWCASE (FEATURED PROJECTS)
+   =================================================================== */
+.projects-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0 30px;
+}
+
+.btn-filter {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  font-family: var(--font-hero);
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-filter.active,
+.btn-filter:hover {
+  background: var(--hero-cyan);
+  color: #000;
+  border-color: var(--hero-cyan);
+  box-shadow: 0 0 15px var(--hero-cyan-glow);
+}
+
+.epic-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.epic-project-card {
+  background: var(--bg-card-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 22px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  transition: var(--transition-spring);
+  display: flex;
+  flex-direction: column;
+}
+
+.epic-project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--hero-gold);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px var(--hero-gold-glow);
+}
+
+.epic-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #080c1d;
+}
+
+.epic-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.epic-project-card:hover .epic-img-wrap img {
+  transform: scale(1.08);
+}
+
+.project-mission-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(7, 9, 19, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-neon);
+  color: var(--hero-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.epic-project-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.epic-project-body h3 {
+  font-family: var(--font-hero);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: var(--text-white);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.epic-project-body p {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.epic-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.epic-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--hero-gold);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.epic-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+}
+
+.btn-inspect-quest {
+  font-family: var(--font-hero);
+  font-size: 1.05rem;
+  color: var(--hero-cyan);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.8px;
+  transition: var(--transition);
+}
+
+.btn-inspect-quest:hover {
+  color: var(--hero-gold);
+  transform: translateX(4px);
+}
+
+/* ===================================================================
+   SECTION: SUMMON THE HERO (CONTACT & FOOTER)
+   =================================================================== */
+.summon-section {
+  padding: 100px 0 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.summon-box {
+  background: linear-gradient(135deg, rgba(20, 28, 58, 0.9) 0%, rgba(13, 17, 36, 0.95) 100%);
+  border: 2px solid var(--border-gold);
+  border-radius: 30px;
+  padding: 50px 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px var(--hero-gold-glow);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.summon-box::before {
+  content: "";
+  position: absolute;
+  top: -50%; right: -50%;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, var(--hero-gold-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.summon-content h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.summon-content h2 span {
+  color: var(--hero-gold);
+}
+
+.summon-content p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.summon-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-signal-wa {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  font-family: var(--font-hero);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+  transition: var(--transition-spring);
+}
+
+.btn-signal-wa:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 35px #25d366;
+}
+
+.btn-signal-email {
+  background: linear-gradient(135deg, var(--hero-gold) 0%, #ff8b1f 100%);
+  color: #000;
+  font-family: var(--font-hero);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 25px var(--hero-gold-glow);
+  transition: var(--transition-spring);
+}
+
+.btn-signal-email:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 35px var(--hero-gold);
+}
+
+.summon-channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summon-channel-item {
+  background: rgba(7, 9, 19, 0.7);
+  border: 1px solid var(--border-glass);
+  padding: 14px 18px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.summon-channel-item:hover {
+  border-color: var(--hero-gold);
+  background: rgba(255, 190, 26, 0.08);
+  transform: translateX(6px);
+}
+
+.channel-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 190, 26, 0.15);
+  color: var(--hero-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.channel-info h5 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.8px;
+  margin-bottom: 2px;
+}
+
+.channel-info p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* Footer Bottom Credit */
+.epic-footer-bottom {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.epic-footer-bottom a {
+  color: var(--hero-cyan);
+}
+
+/* Toast Signal */
+.toast-signal {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(13, 17, 36, 0.95);
+  border: 1px solid var(--hero-cyan);
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--hero-cyan-glow);
+  transform: translateY(120px);
+  opacity: 0;
+  transition: var(--transition-spring);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-signal.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Back to Top Jet */
+.back-to-orbit {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--hero-cyan);
+  color: #000;
+  border: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--hero-cyan-glow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.6);
+  transition: var(--transition-spring);
+  z-index: 999;
+}
+
+.back-to-orbit.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.back-to-orbit:hover {
+  transform: scale(1.15) translateY(-3px);
+  background: var(--hero-gold);
+  box-shadow: 0 0 25px var(--hero-gold);
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN (TABLETS & PHONES)
+   =================================================================== */
+@media (max-width: 992px) {
+  .hero-container,
+  .origin-grid,
+  .guild-grid,
+  .summon-box {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hero-dossier-wrapper {
+    order: -1;
+  }
+  
+  .hero-scene {
+    padding-top: 110px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-quest-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(7, 9, 19, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-neon);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+  }
+
+  .nav-quest-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .btn-summon-hero {
+    display: none;
+  }
+
+  .hero-main-title {
+    font-size: 3.5rem;
+  }
+
+  .quest-card {
+    margin-left: 45px;
+    padding: 20px;
+  }
+
+  .quest-node {
+    left: -38px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .quest-timeline-container::before {
+    left: 18px;
+  }
+
+  .summon-box {
+    padding: 30px 20px;
+  }
+
+  .epic-footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
