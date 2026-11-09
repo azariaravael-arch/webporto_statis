@@ -280,6 +280,375 @@
     .rate { flex-direction: column; gap: 2px; } .rate b { text-align: left; }
   }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal, .hero h1, .eyebrow { opacity: 1; transform: none; } }
+
+  /* ---- DOKUMENTASI GALLERY ---- */
+  .doc-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin: 34px 0 28px; }
+  .doc-tab {
+    padding: 9px 20px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--paper);
+    font-family: var(--display); font-weight: 600; font-size: .88rem; color: var(--muted); cursor: pointer; transition: .25s;
+  }
+  .doc-tab.act { background: var(--amber); border-color: var(--amber); color: #3a2a12; }
+  .doc-tab:hover:not(.act) { border-color: #d4b87a; color: var(--ink); transform: translateY(-2px); }
+  .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .doc-card {
+    position: relative; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; cursor: pointer;
+    background: #e6d6b6; border: 2px solid var(--line); box-shadow: 0 10px 24px -16px rgba(90,60,20,.45);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  }
+  .doc-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(.2) saturate(.92);
+    transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .4s;
+  }
+  .doc-card:hover { transform: translateY(-7px); box-shadow: 0 22px 38px -18px rgba(90,60,20,.55); }
+  .doc-card:hover img { transform: scale(1.08); filter: sepia(.05) saturate(1.05); }
+  .doc-info {
+    position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(34,22,12,.86));
+    padding: 38px 16px 14px; display: flex; align-items: flex-end; gap: 8px; opacity: 0; transform: translateY(6px); transition: .35s;
+  }
+  .doc-card:hover .doc-info { opacity: 1; transform: none; }
+  .doc-badge {
+    background: var(--amber); color: #3a2a12; font-size: .7rem; font-weight: 800; padding: 2px 8px;
+    border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; flex-shrink: 0;
+  }
+  .doc-badge.osis { background: #6fa8dc; color: #0d2a4d; }
+  .doc-badge.pmr  { background: #e06c6c; color: #fff; }
+  .doc-badge.proj { background: #82c478; color: #1a3a16; }
+  .doc-label { color: #fff; font-size: .84rem; font-weight: 600; line-height: 1.3; }
+
+  /* ---- LIGHTBOX MODAL ---- */
+  .lb-modal {
+    position: fixed; inset: 0; background: rgba(28,20,12,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    z-index: 9999; display: none; align-items: center; justify-content: center; padding: 24px;
+  }
+  .lb-modal.on { display: flex; animation: lbIn .3s ease; }
+  @keyframes lbIn { from { opacity: 0; transform: scale(.96); } }
+  .lb-inner { position: relative; max-width: min(1000px, 92vw); max-height: 90vh; display: flex; flex-direction: column; align-items: center; }
+  .lb-inner img { width: 100%; max-height: 80vh; object-fit: contain; border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.7); }
+  .lb-cap { color: rgba(255,255,255,.9); font-size: .98rem; text-align: center; margin-top: 14px; line-height: 1.5; max-width: 760px; }
+  .lb-close {
+    position: absolute; top: -46px; right: 0; background: rgba(255,255,255,.18); border: none; color: #fff;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: grid; place-items: center; transition: .25s;
+  }
+  .lb-close:hover { background: var(--amber); color: #3a2a12; }
+
+  @media (max-width: 560px) {
+    .doc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .doc-tabs { gap: 8px; }
+  }
+
+
+  /* =========================================================
+     ENHANCED SECTION THEMES & WAVE DIVIDERS
+     ========================================================= */
+  :root {
+    --sec-about: #fcf8f0;
+    --sec-work: #f7eedd;
+    --sec-skills: #fcf8f0;
+    --sec-journey: #f5ebe0;
+    --sec-docs: #fcf8f0;
+    --sec-brief: #f9f2e4;
+    --sec-faq: #fcf8f0;
+    --sec-footer: #f2e7d3;
+  }
+
+  /* Section Background Themes */
+  #about { background: var(--sec-about); position: relative; padding-bottom: 90px; }
+  #work { background: var(--sec-work); position: relative; padding-top: 60px; padding-bottom: 90px; }
+  #skills { background: var(--sec-skills); position: relative; padding-top: 60px; padding-bottom: 90px; }
+  #journey { background: var(--sec-journey); position: relative; padding-top: 60px; padding-bottom: 90px; }
+  #dokumentasi { background: var(--sec-docs); position: relative; padding-top: 60px; padding-bottom: 90px; }
+  #brief { background: var(--sec-brief); position: relative; padding-top: 60px; padding-bottom: 90px; }
+  #faq { background: var(--sec-faq); position: relative; padding-top: 60px; padding-bottom: 100px; }
+  footer { background: var(--sec-footer) !important; margin-top: 0 !important; border-top: 0 !important; position: relative; }
+
+  /* Section Wave Dividers */
+  .sec-wave {
+    position: absolute; left: 0; bottom: -1px; width: 100%; height: clamp(40px, 5vw, 84px);
+    z-index: 5; display: block; pointer-events: none;
+  }
+
+  /* =========================================================
+     TENTANG SAYA — PORTRAIT CARD WITH 3D PARALLAX TILT
+     ========================================================= */
+  .about-portrait-frame {
+    position: relative; max-width: 440px; margin: 0 auto; perspective: 1200px;
+  }
+  .about-portrait-card {
+    position: relative; border-radius: 28px; overflow: hidden; background: #e8dbc3;
+    border: 3px solid var(--line); box-shadow: 0 32px 64px -20px rgba(90, 60, 20, 0.45);
+    transition: transform 0.25s ease-out, box-shadow 0.35s ease;
+    transform-style: preserve-3d; will-change: transform;
+  }
+  .about-portrait-card img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 20%;
+    display: block; filter: sepia(0.12) saturate(0.98);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s;
+  }
+  .about-portrait-card:hover img {
+    transform: scale(1.04); filter: sepia(0.04) saturate(1.05);
+  }
+  /* Floating Pill on Portrait */
+  .about-portrait-badge {
+    position: absolute; bottom: 18px; left: 16px; right: 16px;
+    background: rgba(252, 248, 240, 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px;
+    box-shadow: 0 14px 30px -10px rgba(90, 60, 20, 0.35);
+    display: flex; align-items: center; gap: 12px; pointer-events: none;
+  }
+  .about-portrait-badge .badge-icon {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--amber);
+    display: grid; place-items: center; font-size: 1.15rem; flex-shrink: 0; color: #3a2a12;
+  }
+  .about-portrait-badge .badge-name { font-family: var(--display); font-weight: 700; font-size: 0.98rem; line-height: 1.2; }
+  .about-portrait-badge .badge-sub { font-size: 0.8rem; color: var(--muted); }
+
+  /* Quick highlight chips in About */
+  .about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 24px; }
+  .about-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+    background: rgba(232, 162, 58, 0.12); border: 1px solid rgba(232, 162, 58, 0.35);
+    border-radius: 999px; font-size: 0.85rem; font-weight: 600; color: #5a3e14;
+  }
+
+  /* =========================================================
+     BIDANG KERJA — 3D PARALLAX TILT HOVER CARDS
+     ========================================================= */
+  .work {
+    perspective: 1000px; transform-style: preserve-3d;
+  }
+  .work-inner {
+    width: 100%; height: 100%; position: relative; border-radius: 18px; overflow: hidden;
+    transition: transform 0.3s ease-out; transform-style: preserve-3d;
+  }
+  .work:hover .work-inner {
+    transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+  }
+
+  /* =========================================================
+     DOKUMENTASI PARALLAX SLIDER LIGHTBOX
+     ========================================================= */
+  .ps-modal {
+    position: fixed; inset: 0; background: rgba(22, 15, 8, 0.94); backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px); z-index: 9999; display: none; align-items: center;
+    justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.35s ease;
+  }
+  .ps-modal.active { display: flex; opacity: 1; }
+  .ps-container {
+    position: relative; width: min(1080px, 94vw); max-height: 92vh;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .ps-stage {
+    position: relative; width: 100%; max-height: 68vh; display: flex;
+    align-items: center; justify-content: center; overflow: hidden; border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7); border: 2px solid rgba(247, 238, 221, 0.18);
+    background: #120d08;
+  }
+  .ps-slide {
+    width: 100%; height: 100%; max-height: 68vh; display: flex;
+    align-items: center; justify-content: center; position: relative;
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
+  }
+  .ps-slide img {
+    max-width: 100%; max-height: 68vh; object-fit: contain; display: block;
+    border-radius: 16px; user-select: none;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .ps-stage:hover .ps-slide img {
+    transform: scale(1.02);
+  }
+
+  /* Navigation Arrows */
+  .ps-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px; border-radius: 50%; background: rgba(252, 248, 240, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.35); color: #fff; font-size: 1.4rem;
+    cursor: pointer; display: grid; place-items: center; transition: 0.25s; z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+  .ps-arrow:hover {
+    background: var(--amber); color: #3a2a12; transform: translateY(-50%) scale(1.1);
+  }
+  .ps-arrow.prev { left: 16px; }
+  .ps-arrow.next { right: 16px; }
+
+  /* Lightbox Header / Meta */
+  .ps-header {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px; color: #fff;
+  }
+  .ps-counter {
+    font-family: var(--display); font-weight: 700; font-size: 0.95rem;
+    color: var(--amber); background: rgba(232, 162, 58, 0.16); padding: 4px 14px;
+    border-radius: 999px; border: 1px solid rgba(232, 162, 58, 0.4);
+  }
+  .ps-close {
+    background: rgba(255, 255, 255, 0.18); border: none; color: #fff;
+    width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 1.25rem;
+    display: grid; place-items: center; transition: 0.25s;
+  }
+  .ps-close:hover {
+    background: #e06c6c; color: #fff; transform: rotate(90deg);
+  }
+
+  /* Caption Info Bar */
+  .ps-caption-bar {
+    width: 100%; margin-top: 14px; background: rgba(252, 248, 240, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px;
+    padding: 12px 18px; color: #fff; text-align: center;
+  }
+  .ps-caption-title {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px;
+  }
+  .ps-caption-text {
+    font-size: 0.88rem; color: rgba(255, 255, 255, 0.82); line-height: 1.4;
+  }
+
+  /* Thumbnails strip */
+  .ps-thumbs {
+    width: 100%; display: flex; gap: 8px; margin-top: 12px; overflow-x: auto;
+    padding: 6px 4px; scrollbar-width: thin;
+  }
+  .ps-thumb {
+    width: 60px; height: 45px; border-radius: 8px; overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2); cursor: pointer; flex-shrink: 0;
+    opacity: 0.55; transition: 0.25s;
+  }
+  .ps-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .ps-thumb.active, .ps-thumb:hover { opacity: 1; border-color: var(--amber); transform: scale(1.08); }
+
+  @media (max-width: 768px) {
+    .ps-arrow { width: 42px; height: 42px; font-size: 1.1rem; }
+    .ps-arrow.prev { left: 8px; } .ps-arrow.next { right: 8px; }
+    .about-portrait-card img { aspect-ratio: 4/5; }
+  }
+
+
+  /* ---- CLEAN ABOUT (NO CLUTTER) ---- */
+  .about-portrait-card {
+    border-radius: 24px; overflow: hidden; background: #e8dbc3;
+    border: 2px solid var(--line); box-shadow: 0 28px 56px -20px rgba(90, 60, 20, 0.4);
+    transition: transform 0.25s ease-out, box-shadow 0.35s ease;
+  }
+  .about-portrait-card img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 20%;
+    display: block; filter: sepia(0.08) saturate(0.98);
+    transition: transform 0.6s ease;
+  }
+  .about-portrait-card:hover img { transform: scale(1.03); }
+
+  /* ---- CURVED REVOLVING 3D CAROUSEL (DOKUMENTASI) ---- */
+  .curved-carousel-wrap {
+    position: relative; width: 100%; margin-top: 50px; user-select: none;
+  }
+  .curved-stage {
+    position: relative; width: 100%; height: 480px; margin: 0 auto;
+    perspective: 1400px; perspective-origin: 50% 38%;
+    display: flex; align-items: center; justify-content: center;
+    overflow: visible; cursor: grab;
+  }
+  .curved-stage:active { cursor: grabbing; }
+
+  .curved-track {
+    position: relative; width: 100%; height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  /* Curved Carousel Card */
+  .c-card {
+    position: absolute; top: 50%; left: 50%;
+    width: clamp(210px, 20vw, 260px);
+    height: clamp(310px, 28vw, 370px);
+    margin-top: calc(-1 * clamp(310px, 28vw, 370px) / 2);
+    margin-left: calc(-1 * clamp(210px, 20vw, 260px) / 2);
+    border-radius: 22px; overflow: hidden;
+    background: #251c14; border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 24px 50px -15px rgba(40, 22, 10, 0.6);
+    cursor: pointer; will-change: transform, opacity;
+    transform-style: preserve-3d;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .c-card:hover {
+    border-color: var(--amber);
+    box-shadow: 0 30px 60px -12px rgba(232, 162, 58, 0.45);
+  }
+  .c-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: sepia(0.18) saturate(0.92);
+    transition: transform 0.5s ease, filter 0.3s ease;
+  }
+  .c-card:hover img {
+    transform: scale(1.06); filter: sepia(0.05) saturate(1.05);
+  }
+
+  /* Card Gradient Caption Overlay (matching reference style) */
+  .c-card-overlay {
+    position: absolute; inset: auto 0 0 0;
+    padding: 60px 16px 16px;
+    background: linear-gradient(to top, rgba(20, 13, 8, 0.94) 0%, rgba(20, 13, 8, 0.72) 60%, transparent 100%);
+    color: #fff; text-align: left;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .c-card-badge {
+    align-self: flex-start; background: var(--amber); color: #3a2a12;
+    font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
+  }
+  .c-card-badge.osis { background: #6fa8dc; color: #0d2a4d; }
+  .c-card-badge.pmr  { background: #e06c6c; color: #fff; }
+  .c-card-badge.proj { background: #82c478; color: #1a3a16; }
+
+  .c-card-title {
+    font-family: var(--display); font-size: 1.02rem; font-weight: 700; color: #fff;
+    line-height: 1.25; margin-bottom: 4px; text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+  .c-card-sub {
+    font-size: 0.78rem; color: rgba(255, 255, 255, 0.82); line-height: 1.35;
+  }
+
+  /* Controls */
+  .curved-controls {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin-top: 28px;
+  }
+  .curved-nav-btn {
+    width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line);
+    background: var(--paper); color: var(--ink); font-size: 1.15rem; cursor: pointer;
+    display: grid; place-items: center; transition: 0.25s; box-shadow: 0 6px 16px -8px rgba(90,60,20,0.3);
+  }
+  .curved-nav-btn:hover {
+    background: var(--amber); border-color: var(--amber); color: #3a2a12; transform: scale(1.08);
+  }
+  .curved-play-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px;
+    border-radius: 999px; border: 1.5px solid var(--line); background: var(--paper);
+    color: var(--ink); font-family: var(--display); font-weight: 600; font-size: 0.9rem;
+    cursor: pointer; transition: 0.25s; box-shadow: 0 6px 16px -8px rgba(90,60,20,0.3);
+  }
+  .curved-play-btn:hover {
+    border-color: var(--amber); background: var(--amber-soft); color: var(--amber-d);
+  }
+
+  .curved-active-info {
+    margin-top: 22px; transition: opacity 0.3s;
+  }
+  .curved-active-badge {
+    display: inline-block; background: rgba(232, 162, 58, 0.2); color: var(--amber-d);
+    font-size: 0.76rem; font-weight: 800; padding: 3px 12px; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .curved-active-title {
+    font-size: 1.3rem; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+  }
+  .curved-active-sub {
+    font-size: 0.92rem; color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .curved-stage { height: 400px; perspective-origin: 50% 34%; }
+    .c-card { width: 190px; height: 280px; margin-top: -140px; margin-left: -95px; }
+    .c-card-title { font-size: 0.92rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -290,10 +659,12 @@
   <div class="row">
     <a href="#home" class="logo">Ravael Asarya</a>
     <div class="menu" id="menu">
+      <a href="#about" class="l">Tentang</a>
       <a href="#work" class="l">Bidang Kerja</a>
       <a href="#journey" class="l">Perjalanan</a>
-      <a href="#about" class="l">Tentang</a>
+      <a href="#dokumentasi" class="l">Galeri</a>
       <a href="#faq" class="l">FAQ</a>
+      <a href="CV Ravael.pdf" download="CV Ravael.pdf" target="_blank" class="l" style="font-weight:700;color:var(--amber-d)">&#8595; Unduh CV</a>
       <a href="#brief" class="pill"><span class="dot"></span> PKL di Inixindo</a>
     </div>
     <button id="burger" aria-label="Menu"><span></span></button>
@@ -303,7 +674,7 @@
 <!-- HERO -->
 <header class="hero" id="home">
   <!-- VIDEO HERO: daftar klip ada di script (const clips). Mau pakai videomu sendiri? ganti isi fungsi loadClip, mis. hv.src = "video/hero.mp4" -->
-  <video id="hv" muted playsinline preload="auto" poster="https://assets.mixkit.co/videos/1728/1728-thumb-720-0.jpg" aria-hidden="true"></video>
+  <video id="hv" muted playsinline preload="auto" poster="assets/foto diri/Foto diri 1.jpeg" aria-hidden="true"><source src="assets/vidio porto desain.mp4" type="video/mp4"></video>
   <div class="shade"></div>
 
   <p class="eyebrow">Web Developer · IT Technical Support · Content Creator</p>
@@ -320,6 +691,34 @@
 </header>
 
 <main>
+  <!-- ABOUT -->
+  <section class="s" id="about">
+    <div class="wrap about">
+      <div class="about-portrait-frame reveal">
+        <div class="about-portrait-card" id="aboutCard">
+          <img src="assets/foto diri/Foto diri 1.jpeg" alt="Ravael Asarya Rompas" loading="lazy">
+        </div>
+        <figcaption style="margin-top:14px;color:var(--muted);font-size:0.92rem;text-align:center;">
+          Ravael Asarya Rompas &mdash; Siswa Rekayasa Perangkat Lunak
+        </figcaption>
+      </div>
+
+      <div class="reveal d1">
+        <h2>Tentang Saya</h2>
+        <p>Saya Ravael, siswa Rekayasa Perangkat Lunak dengan pengalaman praktik langsung di bidang web development dan IT technical support.</p>
+        <p>Saya terbiasa mengembangkan website dan aplikasi mobile dengan Laravel, React JS, dan Flutter, serta mengelola sistem operasional berbasis Odoo 17. Di sisi infrastruktur, saya menangani instalasi, pemeliharaan perangkat keras komputer, jaringan kantor (LAN & Wi-Fi), dan operasional sistem IT perusahaan.</p>
+        <p>Kemampuan komunikasi, kepemimpinan, dan kolaborasi tim saya kembangkan lewat pengalaman organisasi dan lingkungan kerja profesional, dari Ketua OSIS sampai ruang kerja kantor industri.</p>
+        <p>Di luar itu, saya juga memproduksi dan mengelola konten digital untuk YouTube dan media sosial perusahaan.</p>
+        <div class="sign">Ravael</div>
+      </div>
+    </div>
+
+    <!-- Wave divider to Bidang Kerja (#work) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 48 C 220 90, 440 10, 720 54 S 1160 90, 1440 42 L1440 90 L0 90Z" fill="var(--sec-work)"/>
+    </svg>
+  </section>
+
   <!-- WORK -->
   <section class="s" id="work">
     <div class="wrap">
@@ -335,6 +734,10 @@
         <button class="work c6 reveal" data-i="5"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1600&q=80" alt="Media sosial" loading="lazy" style="object-position:center 40%"><span class="more">+</span><div class="cap"><h3>Media Sosial & Data Perusahaan</h3><p>Konten digital · Inventaris</p></div></button>
       </div>
     </div>
+      <!-- Wave divider to Keahlian (#skills) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 38 C 260 84, 520 8, 800 48 S 1200 90, 1440 36 L1440 90 L0 90Z" fill="var(--sec-skills)"/>
+    </svg>
   </section>
 
   <!-- SKILLS -->
@@ -363,6 +766,10 @@
         </div>
       </div>
     </div>
+      <!-- Wave divider to Perjalanan (#journey) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 50 C 300 12, 600 88, 900 42 S 1240 14, 1440 52 L1440 90 L0 90Z" fill="var(--sec-journey)"/>
+    </svg>
   </section>
 
   <!-- JOURNEY -->
@@ -418,6 +825,49 @@
         </div>
       </div>
     </div>
+      <!-- Wave divider to Galeri Dokumentasi (#dokumentasi) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 44 C 240 88, 480 8, 760 52 S 1180 88, 1440 40 L1440 90 L0 90Z" fill="var(--sec-docs)"/>
+    </svg>
+  </section>
+
+  <!-- DOKUMENTASI -->
+  <section class="s" id="dokumentasi" style="padding-top:70px;padding-bottom:110px;overflow:hidden;">
+    <div class="wrap" style="text-align:center;">
+      <h2 class="reveal">Dokumentasi</h2>
+      <p class="intro reveal d1" style="margin-inline:auto;">
+        Kumpulan dokumentasi nyata dari kegiatan praktik kerja lapangan, kepemimpinan organisasi, dan proyek sekolah. Galeri melengkung berputar secara dinamis &mdash; klik foto untuk melihat ukuran penuh.
+      </p>
+
+      <!-- Curved Carousel Controls & Status -->
+      <div class="curved-carousel-wrap reveal d2" id="curvedCarouselWrap">
+        <!-- Curved 3D Stage -->
+        <div class="curved-stage" id="curvedStage">
+          <div class="curved-track" id="curvedTrack"></div>
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="curved-controls">
+          <button class="curved-nav-btn" id="cPrev" aria-label="Putar ke kiri">&#10094;</button>
+          <button class="curved-play-btn" id="cPlayToggle" aria-label="Jeda putaran">
+            <span id="cPlayIcon">&#10074;&#10074;</span> <span id="cPlayText">Otomatis Memutar</span>
+          </button>
+          <button class="curved-nav-btn" id="cNext" aria-label="Putar ke kanan">&#10095;</button>
+        </div>
+
+        <!-- Indicator info below carousel -->
+        <div class="curved-active-info" id="curvedActiveInfo">
+          <span class="curved-active-badge" id="cActiveBadge">PKL 1</span>
+          <h3 class="curved-active-title" id="cActiveTitle">Inixindo Bandung &bull; Server &amp; Web</h3>
+          <p class="curved-active-sub" id="cActiveSub">Geser kursor atau sentuh layar untuk memutar galeri</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave divider to Mulai Percakapan (#brief) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 52 C 280 12, 560 90, 840 46 S 1200 12, 1440 50 L1440 90 L0 90Z" fill="var(--sec-brief)"/>
+    </svg>
   </section>
 
   <!-- BRIEF -->
@@ -427,24 +877,10 @@
       <p class="intro reveal d1">Enam pertanyaan kecil, satu per satu, seperti menata kuas sebelum mulai melukis. Hasilnya menjadi pesan siap kirim lewat WhatsApp atau email.</p>
       <div class="wiz reveal d2" id="wiz"></div>
     </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="s" id="about">
-    <div class="wrap about">
-      <figure class="reveal">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Meja kerja" loading="lazy">
-        <figcaption>Meja tempat kode di situs ini ditulis. Kopi hampir pasti ada di luar bingkai.</figcaption>
-      </figure>
-      <div class="reveal d1">
-        <h2>Catatan dari saya</h2>
-        <p>Saya Ravael, siswa Rekayasa Perangkat Lunak dengan pengalaman praktik di bidang web development dan IT technical support.</p>
-        <p>Saya terbiasa mengembangkan website dan aplikasi mobile dengan Laravel, React JS, dan Flutter, serta mengelola sistem berbasis Odoo 17. Di sisi lain, saya juga menangani pemeliharaan perangkat keras, jaringan komputer, dan operasional sistem IT perusahaan.</p>
-        <p>Kemampuan komunikasi, kepemimpinan, dan kolaborasi tim saya kembangkan lewat pengalaman organisasi dan lingkungan kerja profesional, dari OSIS sampai ruang kerja kantor.</p>
-        <p>Di luar itu, saya juga memproduksi dan mengelola konten digital untuk YouTube dan media sosial perusahaan.</p>
-        <div class="sign">Ravael</div>
-      </div>
-    </div>
+      <!-- Wave divider to FAQ (#faq) -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 42 C 220 86, 460 10, 720 50 S 1160 88, 1440 40 L1440 90 L0 90Z" fill="var(--sec-faq)"/>
+    </svg>
   </section>
 
   <!-- FAQ -->
@@ -460,6 +896,10 @@
         <div class="q"><button aria-expanded="false">Bagaimana cara menghubungimu?<span class="pm">+</span></button><div class="ans"><div><p>Isi <a href="#brief">formulir singkat</a> di atas, kirim email ke azariaravel@gmail.com, atau chat langsung lewat <a href="https://wa.me/6281242674911" target="_blank" rel="noopener">WhatsApp</a>.</p></div></div></div>
       </div>
     </div>
+      <!-- Wave divider to Footer -->
+    <svg class="sec-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 48 C 300 90, 600 10, 920 54 S 1260 88, 1440 46 L1440 90 L0 90Z" fill="var(--sec-footer)"/>
+    </svg>
   </section>
 </main>
 
@@ -480,6 +920,7 @@
         <div class="lab">Di tempat lain</div>
         <a href="https://github.com/azariaravael-arch" target="_blank" rel="noopener">GitHub — azariaravael-arch</a>
         <a href="https://wa.me/6281242674911" target="_blank" rel="noopener">WhatsApp — 0812-4267-4911</a>
+        <a href="CV Ravael.pdf" download="CV Ravael.pdf" target="_blank" style="font-weight:700;color:var(--amber-d)">&#8595; Unduh CV (PDF)</a>
         <a href="#about">Domisili — Semarang</a>
       </div>
     </div>
@@ -526,7 +967,7 @@
 
   /* ---------- Nav, progress, spy ---------- */
   const nav = $('#nav'), bar = $('#bar'), menu = $('#menu'), burger = $('#burger');
-  const spy = ['work', 'journey', 'about', 'faq'].map(id => document.getElementById(id));
+  const spy = ['about', 'work', 'journey', 'dokumentasi', 'brief', 'faq'].map(id => document.getElementById(id)).filter(Boolean);
   const links = $$('.menu a.l');
   function onScroll() {
     const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
@@ -551,7 +992,10 @@
   const clips = [1728, 1730, 1749];            // ID klip gratis dari Mixkit (lisensi bebas pakai)
   const wantQ = innerWidth >= 900 ? 1080 : 720;
   let ci = 0, q = wantQ, fails = 0;
-  function loadClip() { hv.src = `https://assets.mixkit.co/videos/${clips[ci]}/${clips[ci]}-${q}.mp4`; hv.load(); hv.play().catch(() => {}); }
+  function loadClip() {
+    if (!hv.currentSrc || hv.currentSrc.includes("vidio")) { hv.load(); hv.play().catch(()=>{}); return; }
+    hv.src = `https://assets.mixkit.co/videos/${clips[ci]}/${clips[ci]}-${q}.mp4`; hv.load(); hv.play().catch(() => {});
+  }
   hv.addEventListener('loadeddata', () => { hv.style.opacity = 1; fails = 0; });
   hv.addEventListener('ended', () => { hv.style.opacity = 0; setTimeout(() => { ci = (ci + 1) % clips.length; q = wantQ; loadClip(); }, 700); });
   hv.addEventListener('error', () => {
@@ -628,6 +1072,502 @@
     say('Pesan disiapkan ✓');
   }
   renderWiz();
+
+  
+  
+  /* =========================================================
+     3D INTERACTIVE TILT FOR TENTANG SAYA PORTRAIT
+     ========================================================= */
+  const aboutCard = document.getElementById('aboutCard');
+  if (aboutCard) {
+    const handleTilt = (e) => {
+      const rect = aboutCard.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / (rect.height / 2)) * 8;
+      const rotY = (x / (rect.width / 2)) * 8;
+      aboutCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(1.02)`;
+    };
+    aboutCard.addEventListener('mousemove', handleTilt);
+    aboutCard.addEventListener('mouseleave', () => {
+      aboutCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    });
+  }
+
+  /* =========================================================
+     3D PARALLAX TILT FOR BIDANG KERJA CARDS
+     ========================================================= */
+  document.querySelectorAll('.work').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / (rect.height / 2)) * 6;
+      const rotY = (x / (rect.width / 2)) * 6;
+      const img = card.querySelector('img');
+      card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-6px)`;
+      if (img) img.style.transform = `scale(1.08) translate(${(-rotY * 1.5).toFixed(1)}px, ${(-rotX * 1.5).toFixed(1)}px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      const img = card.querySelector('img');
+      if (img) img.style.transform = 'scale(1) translate(0, 0)';
+    });
+  });
+
+  /* =========================================================
+     PARALLAX SLIDER LIGHTBOX MODAL (DOKUMENTASI)
+     ========================================================= */
+  const psModal = document.createElement('div');
+  psModal.className = 'ps-modal';
+  psModal.id = 'psModal';
+  psModal.innerHTML = `
+    <div class="ps-container">
+      <div class="ps-header">
+        <span class="ps-counter" id="psCounter">1 / 12</span>
+        <button class="ps-close" id="psClose" aria-label="Tutup Galeri">&#x2715;</button>
+      </div>
+      <div class="ps-stage" id="psStage">
+        <button class="ps-arrow prev" id="psPrev" aria-label="Foto Sebelumnya">&#10094;</button>
+        <div class="ps-slide" id="psSlide">
+          <img id="psImg" src="" alt="Dokumentasi Full Size" style="display:block;">
+        </div>
+        <button class="ps-arrow next" id="psNext" aria-label="Foto Selanjutnya">&#10095;</button>
+      </div>
+      <div class="ps-caption-bar">
+        <div class="ps-caption-title" id="psCapTitle"></div>
+        <div class="ps-caption-text" id="psCapText"></div>
+      </div>
+      <div class="ps-thumbs" id="psThumbs"></div>
+    </div>
+  `;
+  document.body.appendChild(psModal);
+
+  // Collect all documentation items from DOM
+  const docCards = Array.from(document.querySelectorAll('.doc-card'));
+  const galleryItems = docCards.map(card => ({
+    src: card.dataset.src,
+    cap: card.dataset.cap || '',
+    tab: card.dataset.tab,
+    label: card.querySelector('.doc-label')?.textContent || '',
+    badge: card.querySelector('.doc-badge')?.textContent || ''
+  }));
+
+  let currentGalleryIndex = 0;
+  const psImg = document.getElementById('psImg');
+  const psCounter = document.getElementById('psCounter');
+  const psCapTitle = document.getElementById('psCapTitle');
+  const psCapText = document.getElementById('psCapText');
+  const psSlide = document.getElementById('psSlide');
+  const psThumbs = document.getElementById('psThumbs');
+
+  // Build thumbnail buttons
+  psThumbs.innerHTML = galleryItems.map((item, idx) => `
+    <button class="ps-thumb" data-idx="${idx}" aria-label="Pilih foto ${idx + 1}">
+      <img src="${item.src}" alt="">
+    </button>
+  `).join('');
+
+  const thumbButtons = psThumbs.querySelectorAll('.ps-thumb');
+
+  function renderGallerySlide(idx, direction = 'none') {
+    if (idx < 0) idx = galleryItems.length - 1;
+    if (idx >= galleryItems.length) idx = 0;
+    currentGalleryIndex = idx;
+    const item = galleryItems[idx];
+
+    // Smooth parallax slide animation
+    if (direction !== 'none') {
+      const shift = direction === 'next' ? 40 : -40;
+      psSlide.style.transition = 'none';
+      psSlide.style.transform = `translateX(${shift}px) scale(0.96)`;
+      psSlide.style.opacity = '0.4';
+      requestAnimationFrame(() => {
+        psSlide.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease';
+        psSlide.style.transform = 'translateX(0) scale(1)';
+        psSlide.style.opacity = '1';
+      });
+    }
+
+    psImg.style.display = 'block';
+    psImg.src = item.src;
+    psCounter.textContent = `Foto ${idx + 1} dari ${galleryItems.length}`;
+    psCapTitle.textContent = item.label || 'Dokumentasi Portofolio';
+    psCapText.textContent = item.cap || '';
+
+    thumbButtons.forEach((btn, bIdx) => {
+      btn.classList.toggle('active', bIdx === idx);
+      if (bIdx === idx) {
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  }
+
+  function openGallery(idx) {
+    renderGallerySlide(idx, 'none');
+    psModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    psModal.classList.remove('active');
+    document.body.style.overflow = '';
+    psImg.src = '';
+  }
+
+  // Attach click handlers to doc cards
+  docCards.forEach((card, idx) => {
+    card.onclick = () => openGallery(idx);
+  });
+
+  // Next / Prev button events
+  document.getElementById('psPrev').onclick = (e) => {
+    e.stopPropagation();
+    renderGallerySlide(currentGalleryIndex - 1, 'prev');
+  };
+  document.getElementById('psNext').onclick = (e) => {
+    e.stopPropagation();
+    renderGallerySlide(currentGalleryIndex + 1, 'next');
+  };
+  document.getElementById('psClose').onclick = closeGallery;
+  psModal.onclick = (e) => {
+    if (e.target === psModal) closeGallery();
+  };
+
+  // Thumbnail click
+  thumbButtons.forEach(btn => {
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.dataset.idx, 10);
+      const dir = idx > currentGalleryIndex ? 'next' : 'prev';
+      renderGallerySlide(idx, dir);
+    };
+  });
+
+  // Keyboard navigation (Left, Right, Escape)
+  document.addEventListener('keydown', (e) => {
+    if (!psModal.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') renderGallerySlide(currentGalleryIndex - 1, 'prev');
+    else if (e.key === 'ArrowRight') renderGallerySlide(currentGalleryIndex + 1, 'next');
+    else if (e.key === 'Escape') closeGallery();
+  });
+
+  // Touch Swipe navigation for mobile
+  let touchStartX = 0;
+  psModal.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  psModal.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (diff > 50) renderGallerySlide(currentGalleryIndex - 1, 'prev');
+    else if (diff < -50) renderGallerySlide(currentGalleryIndex + 1, 'next');
+  }, { passive: true });
+
+  /* ---------- Dokumentasi Filter Tabs ---------- */
+  const docGrid = document.getElementById('docGrid');
+  if (docGrid) {
+    document.querySelectorAll('.doc-tab').forEach(tab => {
+      tab.onclick = () => {
+        document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('act'));
+        tab.classList.add('act');
+        const sel = tab.dataset.tab;
+        document.querySelectorAll('.doc-card').forEach(card => {
+          card.style.display = (sel === 'all' || card.dataset.tab === sel) ? '' : 'none';
+        });
+      };
+    });
+  }
+
+  
+  /* =========================================================
+     CURVED REVOLVING 3D CAROUSEL SCRIPT
+     ========================================================= */
+  const docPhotosData = [
+    {
+      src: "assets/pkl 1/pkl 1.jpeg",
+      title: "Inixindo Bandung",
+      sub: "Server & Workspace Sistem Web",
+      badge: "PKL 1",
+      badgeCls: "",
+      desc: "PKL 1 &mdash; Inixindo Bandung: Pemeliharaan dan pengelolaan sistem informasi berbasis web serta lingkungan server perusahaan."
+    },
+    {
+      src: "assets/pkl 1/pkl1.1.jpeg",
+      title: "Hardware & IT Support",
+      sub: "Troubleshooting & Konten YouTube",
+      badge: "PKL 1",
+      badgeCls: "",
+      desc: "PKL 1 &mdash; Inixindo Bandung: Instalasi, perawatan berkala perangkat keras kantor, dan produksi konten edukatif YouTube."
+    },
+    {
+      src: "assets/pkl 1/pkl 1.3.jpeg",
+      title: "Jaringan LAN & Wi-Fi",
+      sub: "Infrastruktur IT Kantor",
+      badge: "PKL 1",
+      badgeCls: "",
+      desc: "PKL 1 &mdash; Inixindo Bandung: Pemeliharaan infrastruktur jaringan kabel LAN dan titik akses Wi-Fi operasional perusahaan."
+    },
+    {
+      src: "assets/pkl 2/pkl 2.jpeg",
+      title: "Omahama & Boja Alkesindo",
+      sub: "Programmer, Odoo 17 & Media",
+      badge: "PKL 2",
+      badgeCls: "",
+      desc: "PKL 2 &mdash; Omahama & CV Boja Alkesindo: Pengembangan website, mobile app Flutter, konfigurasi Odoo 17, dan pengelolaan inventaris."
+    },
+    {
+      src: "assets/organisasi/osis 1.jpeg",
+      title: "Ketua OSIS 2024/2025",
+      sub: "Rapat Kerja Kepengurusan",
+      badge: "OSIS",
+      badgeCls: "osis",
+      desc: "OSIS SMK Bagimu Negeriku: Memimpin rapat kerja kepengurusan OSIS periode 2024/2025 bersama seluruh divisi perwakilan siswa."
+    },
+    {
+      src: "assets/organisasi/osis 2.jpeg",
+      title: "Program Kerja Sekolah",
+      sub: "Perencanaan Agenda & Event",
+      badge: "OSIS",
+      badgeCls: "osis",
+      desc: "OSIS SMK Bagimu Negeriku: Perencanaan program kerja OSIS untuk mendukung kegiatan akademik, kerohanian, dan ekstrakurikuler."
+    },
+    {
+      src: "assets/organisasi/osis 3.jpeg",
+      title: "Kolaborasi Tim Siswa & Guru",
+      sub: "Komunikasi dan Koordinasi",
+      badge: "OSIS",
+      badgeCls: "osis",
+      desc: "OSIS SMK Bagimu Negeriku: Menjalin relasi komunikasi dan koordinasi antara siswa dengan guru pembina sekolah."
+    },
+    {
+      src: "assets/organisasi/osis 4.jpeg",
+      title: "Pelaksanaan Event Sekolah",
+      sub: "Manajemen Tim & Acara",
+      badge: "OSIS",
+      badgeCls: "osis",
+      desc: "OSIS SMK Bagimu Negeriku: Pelaksanaan agenda acara sekolah dengan koordinasi kepanitiaan yang solid dan terstruktur."
+    },
+    {
+      src: "assets/organisasi/osis 5.jpeg",
+      title: "Dokumentasi & Evaluasi",
+      sub: "Kepemimpinan Siswa",
+      badge: "OSIS",
+      badgeCls: "osis",
+      desc: "OSIS SMK Bagimu Negeriku: Dokumentasi kegiatan resmi dan evaluasi pencapaian program kerja kepengurusan."
+    },
+    {
+      src: "assets/organisasi/organisasi pmr.jpeg",
+      title: "Palang Merah Remaja",
+      sub: "Pertolongan Pertama & Simulasi",
+      badge: "PMR",
+      badgeCls: "pmr",
+      desc: "PMR SMK Bagimu Negeriku: Pelatihan penanganan pertolongan pertama pada kecelakaan, tanggap darurat, dan aksi kemanusiaan."
+    },
+    {
+      src: "assets/kegiatan sekolah/project sekolah.jpeg",
+      title: "Sistem Informasi Web",
+      sub: "Laravel, MySQL & Bootstrap",
+      badge: "Project",
+      badgeCls: "proj",
+      desc: "Proyek Sekolah RPL: Pengembangan website sistem informasi berbasis Laravel dengan arsitektur MVC, database MySQL, dan UI responsif."
+    },
+    {
+      src: "assets/kegiatan sekolah/project sekolah 2.jpeg",
+      title: "Aplikasi Mobile Flutter",
+      sub: "Dart, REST API & Mobile UI",
+      badge: "Project",
+      badgeCls: "proj",
+      desc: "Proyek Sekolah RPL: Pengembangan aplikasi mobile menggunakan Flutter & Dart yang terintegrasi dengan RESTful backend API."
+    }
+  ];
+
+  const cTrack = document.getElementById('curvedTrack');
+  const cStage = document.getElementById('curvedStage');
+  const cActiveBadge = document.getElementById('cActiveBadge');
+  const cActiveTitle = document.getElementById('cActiveTitle');
+  const cActiveSub = document.getElementById('cActiveSub');
+  const cPlayToggle = document.getElementById('cPlayToggle');
+  const cPlayIcon = document.getElementById('cPlayIcon');
+  const cPlayText = document.getElementById('cPlayText');
+
+  // Build card elements in track
+  if (cTrack) {
+    cTrack.innerHTML = docPhotosData.map((d, i) => `
+      <div class="c-card" data-idx="${i}" id="ccard-${i}">
+        <img src="${d.src}" alt="${d.title}" loading="lazy">
+        <div class="c-card-overlay">
+          <span class="c-card-badge ${d.badgeCls}">${d.badge}</span>
+          <div class="c-card-title">${d.title}</div>
+          <div class="c-card-sub">${d.sub}</div>
+        </div>
+      </div>
+    `).join('');
+
+    const cards = Array.from(cTrack.querySelectorAll('.c-card'));
+    const N = cards.length;
+    const stepAngle = 360 / N; // 30 deg each
+
+    let rotationAngle = 0;
+    let targetRotation = 0;
+    let isAutoRotating = true;
+    let isDragging = false;
+    let startX = 0;
+    let dragStartAngle = 0;
+    let lastTime = performance.now();
+    let autoSpeed = 0.08; // smooth gentle rotation speed in degrees per frame
+
+    // Update positions on the curved arch
+    function updateCurvedPositions() {
+      // Smooth lerp to target when dragging or navigating
+      if (isDragging) {
+        rotationAngle = targetRotation;
+      } else {
+        rotationAngle += (targetRotation - rotationAngle) * 0.1;
+      }
+
+      const radius = window.innerWidth < 768 ? 440 : 660; // 3D cylinder radius
+      let closestIdx = 0;
+      let minAngleDist = 999;
+
+      cards.forEach((card, i) => {
+        // Compute relative angle for this card [-180, 180]
+        let itemAngle = (i * stepAngle - rotationAngle) % 360;
+        if (itemAngle > 180) itemAngle -= 360;
+        if (itemAngle < -180) itemAngle += 360;
+
+        const rad = itemAngle * (Math.PI / 180);
+
+        // Check if this card is closest to front (center)
+        if (Math.abs(itemAngle) < minAngleDist) {
+          minAngleDist = Math.abs(itemAngle);
+          closestIdx = i;
+        }
+
+        // Only render cards that are on the front/sides (-100 to +100 deg)
+        if (Math.abs(itemAngle) > 95) {
+          card.style.display = 'none';
+          return;
+        }
+
+        card.style.display = 'block';
+
+        // 3D curved arch coordinates:
+        // X = horizontal position along cylinder
+        const xPos = Math.sin(rad) * radius;
+        // Z = depth: peak at center (cos(0) = 1)
+        const zPos = Math.cos(rad) * radius - radius;
+        // Y = convex arch curve: drops downward as you go to the sides (cos(0) = 1, cos(rad) < 1)
+        // High in center, curving down on sides like reference image!
+        const yDrop = (1 - Math.cos(rad)) * (window.innerWidth < 768 ? 90 : 130);
+        // Tilt rotation in Z to follow the arch curve:
+        const zRot = -Math.sin(rad) * 11;
+        // Perspective rotation in Y:
+        const yRot = itemAngle * 0.65;
+        // Scale:
+        const scale = 0.82 + Math.cos(rad) * 0.22;
+        // Opacity:
+        const opacity = 0.45 + Math.cos(rad) * 0.55;
+        // Z-Index:
+        const zIndex = Math.round(100 + Math.cos(rad) * 100);
+
+        card.style.transform = `translate3d(${xPos.toFixed(1)}px, ${yDrop.toFixed(1)}px, ${zPos.toFixed(1)}px) rotateY(${yRot.toFixed(1)}deg) rotateZ(${zRot.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+        card.style.opacity = opacity.toFixed(2);
+        card.style.zIndex = zIndex;
+      });
+
+      // Update active info indicator
+      const activeData = docPhotosData[closestIdx];
+      if (activeData) {
+        cActiveBadge.textContent = activeData.badge;
+        cActiveBadge.className = 'curved-active-badge ' + activeData.badgeCls;
+        cActiveTitle.textContent = activeData.title + ' • ' + activeData.sub;
+        cActiveSub.innerHTML = activeData.desc;
+      }
+    }
+
+    // Main animation loop
+    function animateCarousel(now) {
+      if (isAutoRotating && !isDragging) {
+        targetRotation += autoSpeed;
+      }
+      updateCurvedPositions();
+      requestAnimationFrame(animateCarousel);
+    }
+    requestAnimationFrame(animateCarousel);
+
+    // Mouse / Touch Dragging
+    function startDrag(clientX) {
+      isDragging = true;
+      startX = clientX;
+      dragStartAngle = targetRotation;
+    }
+    function moveDrag(clientX) {
+      if (!isDragging) return;
+      const dx = clientX - startX;
+      const sensitivity = 0.28;
+      targetRotation = dragStartAngle - dx * sensitivity;
+    }
+    function endDrag() {
+      isDragging = false;
+      // Snap to nearest card
+      const nearestStep = Math.round(targetRotation / stepAngle);
+      targetRotation = nearestStep * stepAngle;
+    }
+
+    cStage.addEventListener('mousedown', e => {
+      startDrag(e.clientX);
+    });
+    window.addEventListener('mousemove', e => {
+      moveDrag(e.clientX);
+    });
+    window.addEventListener('mouseup', () => {
+      endDrag();
+    });
+
+    cStage.addEventListener('touchstart', e => {
+      startDrag(e.touches[0].clientX);
+    }, { passive: true });
+    window.addEventListener('touchmove', e => {
+      if (isDragging) moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+    window.addEventListener('touchend', () => {
+      endDrag();
+    });
+
+    // Pause on hover
+    cStage.addEventListener('mouseenter', () => { autoSpeed = 0.02; });
+    cStage.addEventListener('mouseleave', () => { autoSpeed = 0.08; });
+
+    // Buttons
+    document.getElementById('cPrev')?.addEventListener('click', () => {
+      targetRotation -= stepAngle;
+    });
+    document.getElementById('cNext')?.addEventListener('click', () => {
+      targetRotation += stepAngle;
+    });
+
+    cPlayToggle?.addEventListener('click', () => {
+      isAutoRotating = !isAutoRotating;
+      if (isAutoRotating) {
+        cPlayIcon.innerHTML = '&#10074;&#10074;';
+        cPlayText.textContent = 'Otomatis Memutar';
+      } else {
+        cPlayIcon.innerHTML = '&#9654;';
+        cPlayText.textContent = 'Putaran Dijeda';
+      }
+    });
+
+    // Clicking card opens the Lightbox
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        // If user was dragging significantly, do not trigger click
+        if (Math.abs(targetRotation - dragStartAngle) > 2) return;
+        if (typeof openGallery === 'function') {
+          openGallery(idx);
+        }
+      });
+    });
+  }
 
   /* ---------- FAQ ---------- */
   $('#faqList').addEventListener('click', e => {
