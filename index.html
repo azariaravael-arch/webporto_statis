@@ -142,8 +142,10 @@ figure img{width:100%;height:122%;object-fit:cover}
 
 .p-note-box{padding:14px 18px;border-left:3.5px solid #d4af37;background:rgba(212,175,55,.09);border-radius:0 10px 10px 0;font-size:.92rem;color:#f3ecd8;margin-bottom:22px;line-height:1.55}
 
-/* Features checklist */
-.p-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+/* Features checklist & Collapsible Container */
+.p-features-details{display:block;margin-bottom:28px}
+.p-features-summary{display:none}
+.p-features{list-style:none;display:flex;flex-direction:column;gap:10px}
 .p-features li{display:flex;align-items:flex-start;gap:10px;font-size:.94rem;opacity:.9}
 .p-features li i{color:var(--or);font-style:normal;font-weight:800;font-size:1.1rem;line-height:1.2;flex-shrink:0}
 .p-features li.client i{color:#d4af37}
@@ -224,6 +226,8 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
 .pn .tx{flex-basis:44vw}.pn figure{flex-basis:38vw}
 .eg{grid-template-columns:1fr}.stk{position:relative;top:0}.pv{display:none}.row{opacity:1}.row p{max-height:none}
 .p-content-split,.p-content-split.reverse{grid-template-columns:1fr;gap:32px}
+.p-content-split .p-info,.p-content-split.reverse .p-info{order:1}
+.p-content-split .p-gallery-wrap,.p-content-split.reverse .p-gallery-wrap{order:2}
 .video-info-footer{grid-template-columns:1fr;gap:20px}
 }
 
@@ -236,10 +240,43 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
 .pn .tx,.pn figure{flex:none;width:100%}.pn figure{height:46vh}.hbar,.jt{display:none}
 .ci{clip-path:inset(18% 8% 18% 8% round 16px)}
 .btn{width:100%;justify-content:center}.end footer{flex-direction:column}
-.port-filters{gap:6px}
-.p-tab{font-size:.82rem;padding:8px 16px}
-.p-gallery-grid-mobile{grid-template-columns:repeat(3,1fr);gap:8px}
-.p-gallery-grid-desktop.dual{grid-template-columns:1fr}
+
+/* Optimasi Portofolio Mobile (Ringkas, Rapi & Swipeable) */
+.port{padding:80px 0 60px}
+.port-head{margin-bottom:24px}
+.port-title{font-size:clamp(1.85rem,7vw,2.5rem);line-height:1.1}
+.port-sub{font-size:.95rem;margin-top:10px;line-height:1.55}
+.port-filters{display:flex;overflow-x:auto;flex-wrap:nowrap;gap:8px;padding:4px 2px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.port-filters::-webkit-scrollbar{display:none}
+.p-tab{font-size:.8rem;padding:7px 15px;white-space:nowrap;flex-shrink:0}
+.port-grid{gap:24px}
+.port-item{padding:22px 16px;border-radius:16px}
+.p-info h3{font-size:1.35rem;line-height:1.25;margin-bottom:8px}
+.p-info p.lead{font-size:.92rem;line-height:1.55;margin-bottom:14px;opacity:.82}
+
+/* Accordion Fitur Mobile */
+.p-features-details{display:block;margin-bottom:16px;border:1px solid rgba(239,233,221,.12);border-radius:10px;background:rgba(239,233,221,.025);overflow:hidden}
+.p-features-summary{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:.82rem;font-weight:700;color:var(--paper);cursor:pointer;list-style:none;user-select:none;background:rgba(239,233,221,.05);transition:background .2s}
+.p-features-summary::-webkit-details-marker{display:none}
+.p-features-summary:hover{background:rgba(255,90,20,.08)}
+.p-features-summary .sum-icon{color:var(--or);font-size:.95rem;transition:transform .25s ease}
+.p-features-details[open] .p-features-summary .sum-icon{transform:rotate(180deg)}
+.p-features-details[open] .p-features-summary{border-bottom:1px solid rgba(239,233,221,.08)}
+.p-features-details .p-features{padding:12px 14px;gap:8px;margin-bottom:0}
+.p-features-details .p-features li{font-size:.84rem;line-height:1.45}
+
+/* Screenshot Touch-Slider Horizontal */
+.p-gallery-wrap{margin-top:14px}
+.p-gallery-grid-mobile{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding:2px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.p-gallery-grid-mobile::-webkit-scrollbar{display:none}
+.p-gallery-grid-mobile .p-thumb-card{flex:0 0 56%;scroll-snap-align:start;aspect-ratio:9/16;border-radius:10px}
+
+.p-gallery-grid-desktop,.p-gallery-grid-desktop.dual{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding:2px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.p-gallery-grid-desktop::-webkit-scrollbar,.p-gallery-grid-desktop.dual::-webkit-scrollbar{display:none}
+.p-gallery-grid-desktop .p-thumb-card,.p-gallery-grid-desktop.dual .p-thumb-card{flex:0 0 85%;scroll-snap-align:start;aspect-ratio:16/10;border-radius:10px}
+
+.video-frame-outer video{max-height:240px}
+.video-info-footer{margin-top:18px;gap:14px}
 .p-actions .p-link-btn{width:100%;justify-content:center}
 }
 @media(hover:none){.cur{display:none}}
@@ -303,7 +340,7 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
     <div class="stk"><h2>Yang saya <span class="serif or">kerjakan</span> sehari-hari.</h2>
       <figure class="pv"><img id="pvi" src="assets/kegiatan sekolah/project sekolah 2.jpeg" alt="Pratinjau bidang kerja"></figure></div>
     <div id="rows">
-      <div class="row" data-img="assets/kegiatan sekolah/project sekolah 2.jpeg"><h3>Web & Mobile</h3><small>Laravel · React JS · Flutter</small><p>Website dan aplikasi mobile untuk kebutuhan operasional dan klien, dengan database MySQL dan PostgreSQL.</p></div>
+      <div class="row" data-img="assets/kegiatan sekolah/project sekolah 2.jpeg"><h3>Web & Mobile</h3><small>Laravel · React JS · Flutter</small><p>Membuat website dan aplikasi mobile untuk kebutuhan operasional dan klien, dengan database MySQL dan PostgreSQL.</p></div>
       <div class="row" data-img="assets/pkl 2/pkl 2.jpeg"><h3>Sistem Odoo 17</h3><small>Omahama · Inixindo Bandung</small><p>Memelihara dan mengelola sistem informasi berbasis web perusahaan.</p></div>
       <div class="row" data-img="assets/pkl 1/pkl1.1.jpeg"><h3>Perangkat keras</h3><small>Instalasi · Troubleshooting</small><p>Instalasi dan pemeliharaan komputer agar operasional kantor tidak berhenti.</p></div>
       <div class="row" data-img="assets/pkl 1/pkl 1.3.jpeg"><h3>Jaringan kantor</h3><small>LAN & Wi-Fi</small><p>Merawat infrastruktur jaringan yang menopang seluruh sistem IT perusahaan.</p></div>
@@ -379,15 +416,21 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
           <p class="lead">
             Sistem aplikasi mobile yang dibangun khusus untuk memudahkan operasional dan tata kelola rukun tetangga. Menyederhanakan birokrasi warga menjadi serba praktis, digital, dan transparan.
           </p>
-          <ul class="p-features">
-            <li><i>✓</i> <div><strong>Pengelolaan Data Warga:</strong> Basis data warga terstruktur, kartu keluarga, dan kontak penting lingkungan RT.</div></li>
-            <li><i>✓</i> <div><strong>Surat-Menyurat Digital:</strong> Pengajuan surat pengantar warga secara online tanpa harus bertamu fisik.</div></li>
-            <li><i>✓</i> <div><strong>Papan Pengumuman:</strong> Informasi jadwal kerja bakti, posyandu, dan agenda kegiatan RT secara real-time.</div></li>
-            <li><i>✓</i> <div><strong>Transparansi Iuran:</strong> Pencatatan iuran sampah, keamanan, dan rekapitulasi buku kas RT yang terbuka.</div></li>
-          </ul>
+          <details class="p-features-details" open>
+            <summary class="p-features-summary">
+              <span>Fitur & Spesifikasi Sistem (4)</span>
+              <span class="sum-icon">▾</span>
+            </summary>
+            <ul class="p-features">
+              <li><i>✓</i> <div><strong>Pengelolaan Data Warga:</strong> Basis data warga terstruktur, kartu keluarga, dan kontak penting lingkungan RT.</div></li>
+              <li><i>✓</i> <div><strong>Surat-Menyurat Digital:</strong> Pengajuan surat pengantar warga secara online tanpa harus bertamu fisik.</div></li>
+              <li><i>✓</i> <div><strong>Papan Pengumuman:</strong> Informasi jadwal kerja bakti, posyandu, dan agenda kegiatan RT secara real-time.</div></li>
+              <li><i>✓</i> <div><strong>Transparansi Iuran:</strong> Pencatatan iuran sampah, keamanan, dan rekapitulasi buku kas RT yang terbuka.</div></li>
+            </ul>
+          </details>
           <div class="p-actions">
             <span style="font-size:.85rem;opacity:.65;display:inline-flex;align-items:center;gap:6px">
-              🔍 Klik screenshot untuk memperbesar
+              🔍 Geser screenshot & klik untuk zoom
             </span>
           </div>
         </div>
@@ -414,6 +457,35 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
     <!-- 3. PKL 1: amaPOS (SISTEM KASIR & MANAJEMEN TOKO) -->
     <article class="port-item" data-cat="pkl1">
       <div class="p-content-split reverse">
+        <div class="p-info">
+          <div class="p-badge-wrap">
+            <span class="p-badge">PKL 1 · Omahama</span>
+            <span class="p-badge neutral">Point of Sale</span>
+            <span class="p-badge neutral">Google Play Store</span>
+          </div>
+          <h3>amaPOS — Sistem Kasir & Manajemen Bisnis Terintegrasi</h3>
+          <p class="lead">
+            Aplikasi POS (Point of Sale) modern yang dirancang untuk mempercepat transaksi kasir, mengelola inventaris stok secara otomatis, dan menyajikan laporan keuangan bisnis secara akurat.
+          </p>
+          <details class="p-features-details" open>
+            <summary class="p-features-summary">
+              <span>Fitur & Spesifikasi Kasir (4)</span>
+              <span class="sum-icon">▾</span>
+            </summary>
+            <ul class="p-features">
+              <li><i>✓</i> <div><strong>Integrasi Sistem Pembayaran:</strong> Mendukung metode pembayaran tunai, QRIS, dan transfer bank.</div></li>
+              <li><i>✓</i> <div><strong>Manajemen Stok Otomatis:</strong> Pengurangan stok real-time saat transaksi dan peringatan stok menipis.</div></li>
+              <li><i>✓</i> <div><strong>Pencatatan Data Penjualan:</strong> Riwayat transaksi rinci dengan cetak struk Bluetooth thermal.</div></li>
+              <li><i>✓</i> <div><strong>Laporan Finansial Komprehensif:</strong> Analisis pendapatan harian/bulanan dan margin profit usaha.</div></li>
+            </ul>
+          </details>
+          <div class="p-actions">
+            <a href="https://play.google.com/store/apps/details?id=com.aviantorichad.amapos" target="_blank" rel="noopener" class="p-link-btn playstore" data-mag>
+              <span>Unduh di Google Play</span> ↗
+            </a>
+          </div>
+        </div>
+
         <div class="p-gallery-wrap">
           <div class="p-gallery-grid-mobile">
             <div class="p-thumb-card" data-caption="amaPOS — Dashboard Kasir & Antarmuka Transaksi">
@@ -428,29 +500,6 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
               <img src="assets/Project/Project PKL 1/ama POS/amapos (3).jpeg" alt="Screenshot amaPOS Laporan Penjualan" loading="lazy">
               <div class="p-thumb-overlay"><span>Laporan Keuangan</span></div>
             </div>
-          </div>
-        </div>
-
-        <div class="p-info">
-          <div class="p-badge-wrap">
-            <span class="p-badge">PKL 1 · Omahama</span>
-            <span class="p-badge neutral">Point of Sale</span>
-            <span class="p-badge neutral">Google Play Store</span>
-          </div>
-          <h3>amaPOS — Sistem Kasir & Manajemen Bisnis Terintegrasi</h3>
-          <p class="lead">
-            Aplikasi POS (Point of Sale) modern yang dirancang untuk mempercepat transaksi kasir, mengelola inventaris stok secara otomatis, dan menyajikan laporan keuangan bisnis secara akurat.
-          </p>
-          <ul class="p-features">
-            <li><i>✓</i> <div><strong>Integrasi Sistem Pembayaran:</strong> Mendukung metode pembayaran tunai, QRIS, dan transfer bank.</div></li>
-            <li><i>✓</i> <div><strong>Manajemen Stok Otomatis:</strong> Pengurangan stok real-time saat transaksi dan peringatan stok menipis.</div></li>
-            <li><i>✓</i> <div><strong>Pencatatan Data Penjualan:</strong> Riwayat transaksi rinci dengan cetak struk Bluetooth thermal.</div></li>
-            <li><i>✓</i> <div><strong>Laporan Finansial Komprehensif:</strong> Analisis pendapatan harian/bulanan dan margin profit usaha.</div></li>
-          </ul>
-          <div class="p-actions">
-            <a href="https://play.google.com/store/apps/details?id=com.aviantorichad.amapos" target="_blank" rel="noopener" class="p-link-btn playstore" data-mag>
-              <span>Unduh di Google Play</span> ↗
-            </a>
           </div>
         </div>
       </div>
@@ -470,11 +519,17 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
           <p class="lead">
             Pengelolaan, pengembangan, dan perawatan infrastruktur web untuk portal sistem informasi industri serta website perusahaan clothing Kaoshe Dhewe.
           </p>
-          <ul class="p-features">
-            <li><i>✓</i> <div><strong>SI Industri Bekasi:</strong> Sistem informasi pendataan dan direktori industri Bekasi dengan landing page publik serta dashboard portal admin.</div></li>
-            <li><i>✓</i> <div><strong>Kaoshe Dhewe:</strong> Merawat stabilitas sistem website perusahaan, pembaruan katalog produk, dan optimasi performa akses klien.</div></li>
-            <li><i>✓</i> <div><strong>Maintenance & Performa:</strong> Monitoring kelancaran server web, database, dan pengalaman jelajah pengguna di berbagai perangkat.</div></li>
-          </ul>
+          <details class="p-features-details" open>
+            <summary class="p-features-summary">
+              <span>Fokus & Lingkup Pekerjaan (3)</span>
+              <span class="sum-icon">▾</span>
+            </summary>
+            <ul class="p-features">
+              <li><i>✓</i> <div><strong>SI Industri Bekasi:</strong> Sistem informasi pendataan dan direktori industri Bekasi dengan landing page publik serta dashboard portal admin.</div></li>
+              <li><i>✓</i> <div><strong>Kaoshe Dhewe:</strong> Merawat stabilitas sistem website perusahaan, pembaruan katalog produk, dan optimasi performa akses klien.</div></li>
+              <li><i>✓</i> <div><strong>Maintenance & Performa:</strong> Monitoring kelancaran server web, database, dan pengalaman jelajah pengguna di berbagai perangkat.</div></li>
+            </ul>
+          </details>
           <div class="p-actions">
             <a href="https://si-industri.omahama.web.id/#beranda" target="_blank" rel="noopener" class="p-link-btn" data-mag>
               <span>SI Industri Bekasi</span> ↗
@@ -524,12 +579,18 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
             Sistem informasi gereja terpadu yang dibangun untuk menghubungkan jemaat melalui portal publik yang informatif, sekaligus menyediakan sistem administrasi internal terproteksi (MUSA) untuk tata kelola pelayanan.
           </p>
 
-          <ul class="p-features">
-            <li class="client"><i>✓</i> <div><strong>Portal Informasi Publik:</strong> Profil jemaat, jadwal ibadah mingguan, renungan rohani, dan warta kegiatan digital.</div></li>
-            <li class="client"><i>✓</i> <div><strong>Sistem MUSA Admin:</strong> Pendataan kartu keluarga jemaat, pencatatan sakramen baptisan/pernikahan, dan absensi kehadiran.</div></li>
-            <li class="client"><i>✓</i> <div><strong>Manajemen Finansial Kas:</strong> Transparansi pembukuan persembahan, persepuluhan, dan laporan kas mingguan majelis.</div></li>
-            <li class="client"><i>✓</i> <div><strong>Otentikasi Aman:</strong> Hak akses khusus untuk sekretariat, gembala sidang, dan bendahara jemaat.</div></li>
-          </ul>
+          <details class="p-features-details" open>
+            <summary class="p-features-summary">
+              <span>Modul & Tata Kelola Pelayanan (4)</span>
+              <span class="sum-icon">▾</span>
+            </summary>
+            <ul class="p-features">
+              <li class="client"><i>✓</i> <div><strong>Portal Informasi Publik:</strong> Profil jemaat, jadwal ibadah mingguan, renungan rohani, dan warta kegiatan digital.</div></li>
+              <li class="client"><i>✓</i> <div><strong>Sistem MUSA Admin:</strong> Pendataan kartu keluarga jemaat, pencatatan sakramen baptisan/pernikahan, dan absensi kehadiran.</div></li>
+              <li class="client"><i>✓</i> <div><strong>Manajemen Finansial Kas:</strong> Transparansi pembukuan persembahan, persepuluhan, dan laporan kas mingguan majelis.</div></li>
+              <li class="client"><i>✓</i> <div><strong>Otentikasi Aman:</strong> Hak akses khusus untuk sekretariat, gembala sidang, dan bendahara jemaat.</div></li>
+            </ul>
+          </details>
 
           <div class="p-actions">
             <a href="https://musa.gpsdifiladelfia.site/" target="_blank" rel="noopener" class="p-link-btn client-btn" data-mag>
@@ -650,6 +711,11 @@ function init(){
     if(matchMedia('(min-width:1025px)').matches)gsap.fromTo(pvi,{opacity:0,scale:1.12},{opacity:1,scale:1,duration:.7,ease:'power3.out',onStart:()=>pvi.src=r.dataset.img})};
   rows.forEach(r=>{ScrollTrigger.create({trigger:r,start:'top 58%',end:'bottom 58%',onToggle:v=>v.isActive&&act(r)});r.addEventListener('click',()=>act(r));
     gsap.from(r,{y:60,duration:1,ease:'power3.out',scrollTrigger:{trigger:r,start:'top 92%'}})});
+
+  /* PORTOFOLIO: Accordion Mobile Auto-Collapse */
+  const pDetails=$$('.p-features-details');
+  if(innerWidth<=700)pDetails.forEach(d=>d.removeAttribute('open'));
+  $$('.p-features-summary').forEach(s=>s.addEventListener('click',()=>setTimeout(()=>ScrollTrigger.refresh(),250)));
 
   /* PORTOFOLIO: Filter Tabs */
   const tabs=$$('.p-tab'),pItems=$$('.port-item');
