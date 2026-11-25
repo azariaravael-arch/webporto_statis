@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ravael Asarya Rompas — Sebuah Cerita</title>
-<meta name="description" content="Perjalanan Ravael Asarya Rompas dari kelas RPL sampai ruang server: web developer, IT support, dan content creator.">
+<title>Ravael Asarya Rompas — Portofolio & Perjalanan</title>
+<meta name="description" content="Portofolio & perjalanan Ravael Asarya Rompas: Web developer, IT support, dan content creator. Showcase proyek mobile amaRT, amaPOS, sistem industri, web perusahaan, dan pesanan klien.">
 <meta name="theme-color" content="#0b0f14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{--or:#ff5a14;--ink:#0b0f14;--paper:#efe9dd;--d:'Bricolage Grotesque',system-ui,sans-serif;--s:'Instrument Serif',Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -33,6 +33,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .logo{position:fixed;left:24px;top:20px;z-index:80;font-weight:800;letter-spacing:-.03em;mix-blend-mode:difference;color:#fff}
 .cur{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:50%;background:var(--or);pointer-events:none;z-index:200;mix-blend-mode:normal;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .3s;opacity:0}
 .cur.big{width:56px;height:56px;opacity:.35!important}
+
 /* scene 1 */
 .hero{height:100svh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end}
 .L{position:absolute;will-change:transform}
@@ -49,6 +50,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .hc p{opacity:.7;font-size:1rem;max-width:380px;margin-top:12px}
 .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;border-radius:99px;background:var(--or);color:#fff;font-weight:800;transition:background .3s}
 .btn:hover{background:#ff7a3d}.btn.o{background:none;border:1.5px solid currentColor;color:inherit}.btn.o:hover{background:var(--paper);color:var(--ink)}
+
 /* scene 2 */
 .beg{padding:16vh 0 14vh;overflow:hidden}
 .yr{position:absolute;left:-2vw;top:8vh;font-weight:800;font-size:clamp(8rem,34vw,34rem);line-height:.8;letter-spacing:-.07em;color:transparent;-webkit-text-stroke:2px rgba(239,233,221,.16);white-space:nowrap;user-select:none}
@@ -60,6 +62,7 @@ figure img{width:100%;height:122%;object-fit:cover}
 .nar small{opacity:.6;font-size:.95rem}
 .nt{font-family:var(--s);font-size:clamp(1.5rem,2.6vw,2.5rem);line-height:1.2;margin-top:18px;max-width:30em}
 .i2{grid-column:9/12;justify-self:end;width:100%;max-width:230px;aspect-ratio:1/1;margin-top:-2vh;border-radius:999px}
+
 /* scene 3 */
 .hz{height:100vh;overflow:hidden;position:relative}
 .tkr{display:flex;height:100%;width:400vw}
@@ -72,6 +75,7 @@ figure img{width:100%;height:122%;object-fit:cover}
 .hbar{position:absolute;left:8vw;right:8vw;bottom:5vh;height:2px;background:rgba(11,15,20,.15)}
 .hbar i{display:block;height:100%;background:var(--or);transform:scaleX(0);transform-origin:left}
 .jt{position:absolute;left:8vw;top:12vh;z-index:3;font-size:.95rem;opacity:.7}
+
 /* scene 4 */
 .exp{padding:18vh 0}
 .eg{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw}
@@ -87,6 +91,95 @@ figure img{width:100%;height:122%;object-fit:cover}
 .row small{display:block;margin-top:10px;font-size:.92rem;color:var(--or)}
 .row p{max-width:520px;margin-top:10px;opacity:.8;max-height:0;overflow:hidden;transition:max-height .5s}
 .row.on p{max-height:160px}
+
+/* ==========================================================================
+   SCENE: PORTOFOLIO (KARYA NYATA, DESAIN & SISTEM)
+   ========================================================================== */
+.port{padding:18vh 0 14vh;overflow:hidden;position:relative}
+.port-head{margin-bottom:48px}
+.port-tag{display:inline-block;font-size:.84rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);font-weight:800;margin-bottom:14px}
+.port-title{font-size:clamp(2.4rem,5.2vw,4.8rem);letter-spacing:-.045em;line-height:.98;max-width:960px}
+.port-sub{font-size:1.1rem;opacity:.75;max-width:720px;margin-top:18px;line-height:1.6}
+
+/* Filter Tabs */
+.port-filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;padding-bottom:10px}
+.p-tab{font-family:var(--d);font-size:.92rem;font-weight:700;padding:10px 22px;border-radius:99px;border:1.5px solid rgba(239,233,221,.18);background:rgba(239,233,221,.04);color:var(--paper);transition:all .3s ease;display:inline-flex;align-items:center;gap:8px}
+.p-tab .cnt{font-size:.72rem;opacity:.65;padding:2px 8px;border-radius:99px;background:rgba(239,233,221,.12)}
+.p-tab:hover{border-color:var(--or);color:#fff;background:rgba(255,90,20,.1)}
+.p-tab.on{background:var(--or);border-color:var(--or);color:#fff}
+.p-tab.on .cnt{background:rgba(0,0,0,.3);opacity:1}
+
+/* Port Grid & Cards */
+.port-grid{display:grid;grid-template-columns:1fr;gap:44px;margin-top:20px}
+.port-item{background:rgba(239,233,221,.025);border:1px solid rgba(239,233,221,.1);border-radius:20px;padding:clamp(24px,4vw,44px);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;position:relative;overflow:hidden}
+.port-item:hover{border-color:rgba(255,90,20,.45);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.port-item.client-highlight{border-color:rgba(212,175,55,.35);background:linear-gradient(180deg,rgba(212,175,55,.05) 0%,rgba(239,233,221,.02) 100%)}
+.port-item.client-highlight:hover{border-color:rgba(212,175,55,.75);box-shadow:0 24px 60px rgba(212,175,55,.14)}
+
+/* Badges */
+.p-badge-wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.p-badge{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:99px;background:rgba(255,90,20,.12);color:var(--or);border:1px solid rgba(255,90,20,.3)}
+.p-badge.client{background:rgba(212,175,55,.15);color:#f0cf65;border-color:rgba(212,175,55,.45)}
+.p-badge.neutral{background:rgba(239,233,221,.08);color:var(--paper);border-color:rgba(239,233,221,.2)}
+
+/* Card Split Layout */
+.p-content-split{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.p-content-split.reverse{grid-template-columns:.85fr 1.15fr}
+.p-info h3{font-size:clamp(1.75rem,3.2vw,2.6rem);letter-spacing:-.035em;line-height:1.12;margin-bottom:14px}
+.p-info p.lead{font-size:1.02rem;opacity:.85;line-height:1.68;margin-bottom:20px}
+
+.p-note-box{padding:14px 18px;border-left:3.5px solid #d4af37;background:rgba(212,175,55,.09);border-radius:0 10px 10px 0;font-size:.92rem;color:#f3ecd8;margin-bottom:22px;line-height:1.55}
+
+/* Features checklist */
+.p-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.p-features li{display:flex;align-items:flex-start;gap:10px;font-size:.94rem;opacity:.9}
+.p-features li i{color:var(--or);font-style:normal;font-weight:800;font-size:1.1rem;line-height:1.2;flex-shrink:0}
+.p-features li.client i{color:#d4af37}
+.p-features li strong{color:#fff}
+
+/* Action Links */
+.p-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.p-link-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 26px;border-radius:99px;background:var(--or);color:#fff;font-weight:800;font-size:.92rem;transition:all .3s ease}
+.p-link-btn:hover{background:#ff7a3d;transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,90,20,.35)}
+.p-link-btn.client-btn{background:#d4af37;color:#0b0f14}
+.p-link-btn.client-btn:hover{background:#ebd070;box-shadow:0 10px 24px rgba(212,175,55,.3)}
+.p-link-btn.playstore{background:#00875a}
+.p-link-btn.playstore:hover{background:#00a36c;box-shadow:0 10px 24px rgba(0,135,90,.3)}
+.p-link-btn.ghost{background:none;border:1.5px solid rgba(239,233,221,.25);color:var(--paper)}
+.p-link-btn.ghost:hover{border-color:var(--paper);background:rgba(239,233,221,.08)}
+
+/* Visual Thumbnails & Galleries */
+.p-gallery-wrap{position:relative}
+.p-gallery-grid-mobile{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.p-gallery-grid-desktop{display:grid;grid-template-columns:1fr;gap:14px}
+.p-gallery-grid-desktop.dual{grid-template-columns:1fr 1fr}
+
+.p-thumb-card{position:relative;border-radius:12px;overflow:hidden;background:#151a21;border:1px solid rgba(239,233,221,.12);cursor:pointer;transition:transform .3s ease,border-color .3s ease;aspect-ratio:9/16}
+.p-gallery-grid-desktop .p-thumb-card{aspect-ratio:16/10}
+.p-gallery-grid-desktop:not(.dual) .p-thumb-card{aspect-ratio:16/9.5}
+.p-thumb-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.p-thumb-card:hover img{transform:scale(1.05)}
+.p-thumb-card:hover{border-color:var(--or);transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.6)}
+.p-thumb-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,15,20,.9) 100%);display:flex;align-items:flex-end;padding:12px;font-size:.76rem;opacity:0;transition:opacity .3s ease}
+.p-thumb-card:hover .p-thumb-overlay{opacity:1}
+.p-thumb-overlay span{background:rgba(11,15,20,.7);backdrop-filter:blur(4px);padding:4px 8px;border-radius:6px;border:1px solid rgba(239,233,221,.15)}
+
+/* Video Card Specific */
+.port-video-card{background:radial-gradient(circle at 50% 0%,rgba(255,90,20,.09) 0%,rgba(239,233,221,.02) 75%)}
+.video-frame-outer{width:100%;max-width:960px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(255,90,20,.35);box-shadow:0 25px 60px rgba(0,0,0,.75);background:#000;position:relative}
+.video-frame-outer video{width:100%;max-height:560px;display:block;object-fit:contain;background:#000}
+.video-info-footer{margin-top:30px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+
+/* Lightbox Modal */
+.p-modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.p-modal.open{opacity:1;pointer-events:auto}
+.p-modal-backdrop{position:absolute;inset:0;background:rgba(11,15,20,.94);backdrop-filter:blur(10px)}
+.p-modal-content{position:relative;z-index:10;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;align-items:center}
+.p-modal-content img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:10px;box-shadow:0 24px 70px rgba(0,0,0,.95);border:1px solid rgba(239,233,221,.2)}
+.p-modal-close{position:absolute;top:-46px;right:0;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;background:none;border:none;transition:transform .2s,color .2s}
+.p-modal-close:hover{transform:scale(1.2);color:var(--or)}
+#p-modal-caption{margin-top:14px;font-size:.95rem;color:var(--paper);text-align:center;font-weight:600}
+
 /* scene 5 */
 .cl{height:100vh;overflow:hidden}
 .ci{position:absolute;inset:0;clip-path:inset(22% 18% 22% 18% round 20px)}
@@ -96,15 +189,18 @@ figure img{width:100%;height:122%;object-fit:cover}
 .wipe{position:absolute;inset:0;background:var(--or);color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;padding:0 6vw;z-index:4}
 .wipe p{font-weight:800;font-size:clamp(2.2rem,7.4vw,7.6rem);letter-spacing:-.05em;line-height:.95;max-width:1200px}
 .wipe .serif{letter-spacing:-.02em}
+
 /* scene 6 */
 .end{padding:22vh 0 0;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between}
 .end h2{font-size:clamp(2.6rem,9vw,9rem);letter-spacing:-.055em;line-height:.9}
 .ec{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
 .end footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:60px 0 28px;font-size:.9rem;opacity:.65}
+
 /* static / reduced motion */
 html.static .hz{height:auto}html.static .tkr{width:auto;flex-direction:column}html.static .pn{width:auto;flex-direction:column;padding:60px 24px;height:auto}
 html.static .pn figure{flex:none;width:100%;height:50vh}html.static .row p{max-height:none}html.static .cl{height:auto}
 html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}html.static .cx{position:relative;padding:40px 0}html.static .cx{color:inherit}
+
 /* tablet */
 @media(max-width:1024px){
 #dots span{display:none}.nar{grid-column:6/13}.i1{grid-column:1/6;max-width:320px}.i2{grid-column:9/13;max-width:190px}
@@ -114,7 +210,11 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
 .hero .sun{top:36%}
 .hc{margin-top:30px;padding-bottom:40px;flex-direction:column;align-items:flex-start;gap:20px}
 .pn .tx{flex-basis:44vw}.pn figure{flex-basis:38vw}
-.eg{grid-template-columns:1fr}.stk{position:relative;top:0}.pv{display:none}.row{opacity:1}.row p{max-height:none}}
+.eg{grid-template-columns:1fr}.stk{position:relative;top:0}.pv{display:none}.row{opacity:1}.row p{max-height:none}
+.p-content-split,.p-content-split.reverse{grid-template-columns:1fr;gap:32px}
+.video-info-footer{grid-template-columns:1fr;gap:20px}
+}
+
 /* phone */
 @media(max-width:700px){
 #dots{display:none}.logo{left:16px}
@@ -123,7 +223,13 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
 .hz{height:auto}.tkr{width:auto;flex-direction:column}.pn{width:auto;flex-direction:column;height:auto;padding:70px 24px 30px;align-items:flex-start;gap:26px}
 .pn .tx,.pn figure{flex:none;width:100%}.pn figure{height:46vh}.hbar,.jt{display:none}
 .ci{clip-path:inset(18% 8% 18% 8% round 16px)}
-.btn{width:100%;justify-content:center}.end footer{flex-direction:column}}
+.btn{width:100%;justify-content:center}.end footer{flex-direction:column}
+.port-filters{gap:6px}
+.p-tab{font-size:.82rem;padding:8px 16px}
+.p-gallery-grid-mobile{grid-template-columns:repeat(3,1fr);gap:8px}
+.p-gallery-grid-desktop.dual{grid-template-columns:1fr}
+.p-actions .p-link-btn{width:100%;justify-content:center}
+}
 @media(hover:none){.cur{display:none}}
 </style>
 </head>
@@ -132,7 +238,7 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
 <nav id="dots" aria-label="Babak cerita"></nav>
 
 <main>
-<!-- BABAK 1 -->
+<!-- BABAK 1: PEMBUKA -->
 <section class="sc hero" id="s1" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Pembuka">
   <div class="L grid1" data-d=".1"></div>
   <div class="L sun" data-d=".25"></div>
@@ -149,7 +255,7 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
   </div>
 </section>
 
-<!-- BABAK 2 -->
+<!-- BABAK 2: AWAL MULA -->
 <section class="sc beg" id="s2" data-bg="#1a130e" data-fg="#efe9dd" data-t="Awal mula">
   <span class="yr" id="yr" aria-hidden="true">2024</span>
   <div class="wrap bg2">
@@ -160,7 +266,7 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
   </div>
 </section>
 
-<!-- BABAK 3 -->
+<!-- BABAK 3: PERJALANAN -->
 <section class="sc hz" id="s3" data-bg="#efe9dd" data-fg="#0b0f14" data-t="Perjalanan">
   <p class="jt">Perjalanan · gulir untuk berjalan maju</p>
   <div class="tkr" id="tkr">
@@ -172,7 +278,7 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
   <div class="hbar"><i id="hbar"></i></div>
 </section>
 
-<!-- BABAK 4 -->
+<!-- BABAK 4: PENGALAMAN -->
 <section class="sc exp" id="s4" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Pengalaman">
   <div class="wrap eg">
     <div class="stk"><h2>Yang saya <span class="serif or">kerjakan</span> sehari-hari.</h2>
@@ -188,14 +294,267 @@ html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}h
   </div>
 </section>
 
-<!-- BABAK 5 -->
+<!-- ======================================================================
+     BABAK 5: PORTOFOLIO (BUKTI NYATA KARYA)
+     ====================================================================== -->
+<section class="sc port" id="sport" data-bg="#0a0e14" data-fg="#efe9dd" data-t="Portofolio">
+  <div class="wrap port-head">
+    <span class="port-tag">BUKTI KARYA & SISTEM NYATA</span>
+    <h2 class="port-title">Karya yang <span class="serif or">dibangun</span>, dirawat, dan diselesaikan.</h2>
+    <p class="port-sub">Kumpulan proyek desain UI/UX, aplikasi mobile & sistem web saat PKL 1 di Omahama, serta sistem pesanan khusus dari klien.</p>
+    
+    <!-- Filter Kategori Proyek -->
+    <div class="port-filters" role="tablist" aria-label="Filter Portofolio">
+      <button class="p-tab on" data-filter="all" data-mag>Semua Proyek <span class="cnt">5</span></button>
+      <button class="p-tab" data-filter="desain" data-mag>Desain UI/UX (Video) <span class="cnt">1</span></button>
+      <button class="p-tab" data-filter="pkl1" data-mag>PKL 1: Omahama <span class="cnt">3</span></button>
+      <button class="p-tab" data-filter="klien" data-mag>Pesanan Klien <span class="cnt">1</span></button>
+    </div>
+  </div>
+
+  <div class="wrap port-grid">
+
+    <!-- 1. PORTOFOLIO DESAIN: VIDEO SHOWCASE -->
+    <article class="port-item port-video-card" data-cat="desain">
+      <div class="p-badge-wrap">
+        <span class="p-badge">Portofolio Desain</span>
+        <span class="p-badge neutral">UI/UX & Prototyping</span>
+        <span class="p-badge neutral">Showreel Motion</span>
+      </div>
+
+      <div class="video-frame-outer">
+        <video id="designVideo" controls playsinline preload="metadata">
+          <source src="assets/Project/porto UIUX.mp4" type="video/mp4">
+          Browser Anda tidak mendukung pemutar video HTML5.
+        </video>
+      </div>
+
+      <div class="video-info-footer">
+        <div>
+          <h3 style="font-size:clamp(1.6rem,2.8vw,2.3rem);letter-spacing:-.03em;margin-bottom:8px">Eksplorasi Desain UI/UX & Interaksi Antarmuka</h3>
+          <p style="opacity:.8;font-size:1rem;line-height:1.6">
+            Video eksplorasi perancangan antarmuka visual mobile dan dashboard. Menghubungkan riset kebutuhan pengguna, wireframing yang rapi, arsitektur informasi, serta prototipe interaktif sebelum masuk tahap pengkodean produksi.
+          </p>
+        </div>
+        <div style="background:rgba(239,233,221,.04);border:1px solid rgba(239,233,221,.12);border-radius:14px;padding:20px">
+          <span style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--or);font-weight:700;display:block;margin-bottom:8px">Fokus Desain</span>
+          <p style="font-size:.9rem;opacity:.85;line-height:1.55">
+            • Visual Hierarchy & Typography Editorial<br>
+            • Komponen Desain Responsif & Design System<br>
+            • Micro-interaction yang nyaman bagi pengguna
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. PKL 1: amaRT (SISTEM MOBILE PENGELOLAAN RT) -->
+    <article class="port-item" data-cat="pkl1">
+      <div class="p-content-split">
+        <div class="p-info">
+          <div class="p-badge-wrap">
+            <span class="p-badge">PKL 1 · Omahama</span>
+            <span class="p-badge neutral">Mobile Application</span>
+            <span class="p-badge neutral">Sistem Warga</span>
+          </div>
+          <h3>amaRT — Sistem Pengelolaan Lingkungan RT</h3>
+          <p class="lead">
+            Sistem aplikasi mobile yang dibangun khusus untuk memudahkan operasional dan tata kelola rukun tetangga. Menyederhanakan birokrasi warga menjadi serba praktis, digital, dan transparan.
+          </p>
+          <ul class="p-features">
+            <li><i>✓</i> <div><strong>Pengelolaan Data Warga:</strong> Basis data warga terstruktur, kartu keluarga, dan kontak penting lingkungan RT.</div></li>
+            <li><i>✓</i> <div><strong>Surat-Menyurat Digital:</strong> Pengajuan surat pengantar warga secara online tanpa harus bertamu fisik.</div></li>
+            <li><i>✓</i> <div><strong>Papan Pengumuman:</strong> Informasi jadwal kerja bakti, posyandu, dan agenda kegiatan RT secara real-time.</div></li>
+            <li><i>✓</i> <div><strong>Transparansi Iuran:</strong> Pencatatan iuran sampah, keamanan, dan rekapitulasi buku kas RT yang terbuka.</div></li>
+          </ul>
+          <div class="p-actions">
+            <span style="font-size:.85rem;opacity:.65;display:inline-flex;align-items:center;gap:6px">
+              🔍 Klik screenshot untuk memperbesar
+            </span>
+          </div>
+        </div>
+
+        <div class="p-gallery-wrap">
+          <div class="p-gallery-grid-mobile">
+            <div class="p-thumb-card" data-caption="amaRT — Tampilan Menu Utama & Beranda Warga">
+              <img src="assets/Project/Project PKL 1/Ama RT/amart 1 (1).jpeg" alt="Screenshot Aplikasi amaRT Beranda" loading="lazy">
+              <div class="p-thumb-overlay"><span>Menu Utama</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="amaRT — Layanan Surat & Administrasi Warga">
+              <img src="assets/Project/Project PKL 1/Ama RT/amart 2.jpeg" alt="Screenshot Layanan Surat amaRT" loading="lazy">
+              <div class="p-thumb-overlay"><span>Layanan Surat</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="amaRT — Pengumuman Warga & Iuran Lingkungan">
+              <img src="assets/Project/Project PKL 1/Ama RT/amart 3.jpeg" alt="Screenshot Iuran & Pengumuman amaRT" loading="lazy">
+              <div class="p-thumb-overlay"><span>Pengumuman & Iuran</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. PKL 1: amaPOS (SISTEM KASIR & MANAJEMEN TOKO) -->
+    <article class="port-item" data-cat="pkl1">
+      <div class="p-content-split reverse">
+        <div class="p-gallery-wrap">
+          <div class="p-gallery-grid-mobile">
+            <div class="p-thumb-card" data-caption="amaPOS — Dashboard Kasir & Antarmuka Transaksi">
+              <img src="assets/Project/Project PKL 1/ama POS/amapos (1).jpeg" alt="Screenshot amaPOS Dashboard Kasir" loading="lazy">
+              <div class="p-thumb-overlay"><span>Kasir Transaksi</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="amaPOS — Manajemen Produk & Stok Inventaris">
+              <img src="assets/Project/Project PKL 1/ama POS/amapos (2).jpeg" alt="Screenshot amaPOS Manajemen Stok" loading="lazy">
+              <div class="p-thumb-overlay"><span>Stok Barang</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="amaPOS — Laporan Penjualan & Analitik Keuangan">
+              <img src="assets/Project/Project PKL 1/ama POS/amapos (3).jpeg" alt="Screenshot amaPOS Laporan Penjualan" loading="lazy">
+              <div class="p-thumb-overlay"><span>Laporan Keuangan</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-info">
+          <div class="p-badge-wrap">
+            <span class="p-badge">PKL 1 · Omahama</span>
+            <span class="p-badge neutral">Point of Sale</span>
+            <span class="p-badge neutral">Google Play Store</span>
+          </div>
+          <h3>amaPOS — Sistem Kasir & Manajemen Bisnis Terintegrasi</h3>
+          <p class="lead">
+            Aplikasi POS (Point of Sale) modern yang dirancang untuk mempercepat transaksi kasir, mengelola inventaris stok secara otomatis, dan menyajikan laporan keuangan bisnis secara akurat.
+          </p>
+          <ul class="p-features">
+            <li><i>✓</i> <div><strong>Integrasi Sistem Pembayaran:</strong> Mendukung metode pembayaran tunai, QRIS, dan transfer bank.</div></li>
+            <li><i>✓</i> <div><strong>Manajemen Stok Otomatis:</strong> Pengurangan stok real-time saat transaksi dan peringatan stok menipis.</div></li>
+            <li><i>✓</i> <div><strong>Pencatatan Data Penjualan:</strong> Riwayat transaksi rinci dengan cetak struk Bluetooth thermal.</div></li>
+            <li><i>✓</i> <div><strong>Laporan Finansial Komprehensif:</strong> Analisis pendapatan harian/bulanan dan margin profit usaha.</div></li>
+          </ul>
+          <div class="p-actions">
+            <a href="https://play.google.com/store/apps/details?id=com.aviantorichad.amapos" target="_blank" rel="noopener" class="p-link-btn playstore" data-mag>
+              <span>Unduh di Google Play</span> ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. PKL 1: SISTEM INDUSTRI BEKASI & WEB KAOSHE DHEWE -->
+    <article class="port-item" data-cat="pkl1">
+      <div class="p-badge-wrap">
+        <span class="p-badge">PKL 1 · Omahama</span>
+        <span class="p-badge neutral">Web Portal & Industri</span>
+        <span class="p-badge neutral">Pemeliharaan Sistem</span>
+      </div>
+
+      <div class="p-content-split">
+        <div class="p-info">
+          <h3>Sistem Industri Bekasi & Kaoshe Dhewe</h3>
+          <p class="lead">
+            Pengelolaan, pengembangan, dan perawatan infrastruktur web untuk portal sistem informasi industri serta website perusahaan clothing Kaoshe Dhewe.
+          </p>
+          <ul class="p-features">
+            <li><i>✓</i> <div><strong>SI Industri Bekasi:</strong> Sistem informasi pendataan dan direktori industri Bekasi dengan landing page publik serta dashboard portal admin.</div></li>
+            <li><i>✓</i> <div><strong>Kaoshe Dhewe:</strong> Merawat stabilitas sistem website perusahaan, pembaruan katalog produk, dan optimasi performa akses klien.</div></li>
+            <li><i>✓</i> <div><strong>Maintenance & Performa:</strong> Monitoring kelancaran server web, database, dan pengalaman jelajah pengguna di berbagai perangkat.</div></li>
+          </ul>
+          <div class="p-actions">
+            <a href="https://si-industri.omahama.web.id/#beranda" target="_blank" rel="noopener" class="p-link-btn" data-mag>
+              <span>SI Industri Bekasi</span> ↗
+            </a>
+            <a href="https://kaosedhewe.com/" target="_blank" rel="noopener" class="p-link-btn ghost" data-mag>
+              <span>Web Kaoshe Dhewe</span> ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="p-gallery-wrap">
+          <div class="p-gallery-grid-desktop dual">
+            <div class="p-thumb-card" data-caption="SI Industri Bekasi — Landing Page & Direktori">
+              <img src="assets/Project/Project PKL 1/sistem informasi/landing page.png" alt="Landing Page SI Industri Bekasi" loading="lazy">
+              <div class="p-thumb-overlay"><span>Landing Page SI Industri</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="SI Industri Bekasi — Dashboard Admin Portal">
+              <img src="assets/Project/Project PKL 1/sistem informasi/admin portal.png" alt="Admin Portal SI Industri Bekasi" loading="lazy">
+              <div class="p-thumb-overlay"><span>Admin Portal SI Industri</span></div>
+            </div>
+            <div class="p-thumb-card" style="grid-column: 1 / -1; aspect-ratio: 16/7.5" data-caption="Kaoshe Dhewe — Website Resmi Perusahaan">
+              <img src="assets/Project/Project PKL 1/kaoshedhewe.png" alt="Website Kaoshe Dhewe" loading="lazy">
+              <div class="p-thumb-overlay"><span>Website Kaoshe Dhewe</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. PESANAN KLIEN / USER: SISTEM WEB GEREJA (MUSA - GPSDI FILADELFIA) -->
+    <article class="port-item client-highlight" data-cat="klien">
+      <div class="p-content-split">
+        <div class="p-info">
+          <div class="p-badge-wrap">
+            <span class="p-badge client">Pesanan Klien / User</span>
+            <span class="p-badge neutral">Di Luar Tugas PKL 1</span>
+            <span class="p-badge neutral">Live Production</span>
+          </div>
+
+          <h3>Sistem Web Gereja (MUSA — GPSDI Filadelfia)</h3>
+          
+          <div class="p-note-box">
+            <strong>Catatan Penting:</strong> Sistem ini merupakan proyek pesanan langsung (proyek klien mandiri) dari jemaat gereja, dikembangkan di luar rangkaian tugas PKL 1 Omahama.
+          </div>
+
+          <p class="lead">
+            Sistem informasi gereja terpadu yang dibangun untuk menghubungkan jemaat melalui portal publik yang informatif, sekaligus menyediakan sistem administrasi internal terproteksi (MUSA) untuk tata kelola pelayanan.
+          </p>
+
+          <ul class="p-features">
+            <li class="client"><i>✓</i> <div><strong>Portal Informasi Publik:</strong> Profil jemaat, jadwal ibadah mingguan, renungan rohani, dan warta kegiatan digital.</div></li>
+            <li class="client"><i>✓</i> <div><strong>Sistem MUSA Admin:</strong> Pendataan kartu keluarga jemaat, pencatatan sakramen baptisan/pernikahan, dan absensi kehadiran.</div></li>
+            <li class="client"><i>✓</i> <div><strong>Manajemen Finansial Kas:</strong> Transparansi pembukuan persembahan, persepuluhan, dan laporan kas mingguan majelis.</div></li>
+            <li class="client"><i>✓</i> <div><strong>Otentikasi Aman:</strong> Hak akses khusus untuk sekretariat, gembala sidang, dan bendahara jemaat.</div></li>
+          </ul>
+
+          <div class="p-actions">
+            <a href="https://musa.gpsdifiladelfia.site/" target="_blank" rel="noopener" class="p-link-btn client-btn" data-mag>
+              <span>Kunjungi Web Gereja Filadelfia</span> ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="p-gallery-wrap">
+          <div class="p-gallery-grid-desktop">
+            <div class="p-thumb-card" data-caption="Web Gereja GPSDI Filadelfia — Portal Informasi Publik & Warta">
+              <img src="assets/Project/web gereja/web gereja.png" alt="Tampilan Portal Publik Web Gereja" loading="lazy">
+              <div class="p-thumb-overlay"><span>Web Publik Gereja</span></div>
+            </div>
+            <div class="p-thumb-card" data-caption="Sistem MUSA — Dashboard Administrasi Data Jemaat & Finansial">
+              <img src="assets/Project/web gereja/adminnya.png" alt="Dashboard Admin Sistem MUSA" loading="lazy">
+              <div class="p-thumb-overlay"><span>Dashboard Sistem MUSA</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Lightbox Modal untuk Preview Gambar -->
+<div id="p-modal" class="p-modal" aria-hidden="true" role="dialog" aria-label="Pratinjau Gambar Portofolio">
+  <div class="p-modal-backdrop"></div>
+  <div class="p-modal-content">
+    <button class="p-modal-close" aria-label="Tutup pratinjau gambar">&times;</button>
+    <img id="p-modal-img" src="" alt="Pratinjau Gambar Portofolio">
+    <p id="p-modal-caption"></p>
+  </div>
+</div>
+
+<!-- BABAK 6: KLIMAKS -->
 <section class="sc cl" id="s5" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Klimaks">
   <div class="ci"><img src="assets/pkl 1/pkl 1.jpeg" alt="Ravael bekerja" loading="lazy"></div>
   <div class="cx"><span class="ln"><span class="cl1">Satu orang.</span></span><span class="ln"><span class="cl1">Kode, kabel,</span></span><span class="ln"><span class="cl1">dan konten.</span></span></div>
   <div class="wipe" id="wipe"><p class="wm">Membangun yang <span class="serif">terlihat.</span> Merawat yang <span class="serif">tidak terlihat.</span></p></div>
 </section>
 
-<!-- BABAK 6 -->
+<!-- BABAK 7: PENUTUP -->
 <section class="sc end" id="s6" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Penutup">
   <div class="wrap">
     <h2 class="eh"><span class="ln"><span>Cerita berikutnya</span></span><span class="ln"><span class="serif or">dimulai dari proyekmu.</span></span></h2>
@@ -273,7 +632,59 @@ function init(){
   rows.forEach(r=>{ScrollTrigger.create({trigger:r,start:'top 58%',end:'bottom 58%',onToggle:v=>v.isActive&&act(r)});r.addEventListener('click',()=>act(r));
     gsap.from(r,{y:60,duration:1,ease:'power3.out',scrollTrigger:{trigger:r,start:'top 92%'}})});
 
-  /* BABAK 5: klimaks */
+  /* PORTOFOLIO: Filter Tabs */
+  const tabs=$$('.p-tab'),pItems=$$('.port-item');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      tabs.forEach(t=>t.classList.remove('on'));
+      tab.classList.add('on');
+      const f=tab.dataset.filter;
+      pItems.forEach(item=>{
+        const cat=item.dataset.cat;
+        if(f==='all'||cat===f){
+          item.style.display='block';
+          gsap.fromTo(item,{opacity:0,y:25},{opacity:1,y:0,duration:.45,ease:'power2.out'});
+        } else {
+          item.style.display='none';
+        }
+      });
+      ScrollTrigger.refresh();
+    });
+  });
+
+  /* PORTOFOLIO: Lightbox Modal */
+  const pModal=$('#p-modal'),pModalImg=$('#p-modal-img'),pModalCap=$('#p-modal-caption');
+  $$('.p-thumb-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const img=card.querySelector('img');
+      if(!img)return;
+      pModalImg.src=img.src;
+      pModalCap.textContent=card.dataset.caption||img.alt||'Pratinjau Gambar';
+      pModal.classList.add('open');
+      pModal.setAttribute('aria-hidden','false');
+    });
+  });
+  const closeModal=()=>{
+    if(pModal){pModal.classList.remove('open');pModal.setAttribute('aria-hidden','true')}
+  };
+  if(pModal){
+    $('.p-modal-close').addEventListener('click',closeModal);
+    $('.p-modal-backdrop').addEventListener('click',closeModal);
+    addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  }
+
+  /* Animasi Masuk Kartu Portofolio */
+  pItems.forEach(item=>{
+    gsap.from(item,{
+      y:50,
+      opacity:0,
+      duration:1,
+      ease:'power3.out',
+      scrollTrigger:{trigger:item,start:'top 88%'}
+    });
+  });
+
+  /* BABAK 6: klimaks */
   const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#s5',start:'top top',end:'+=300%',pin:true,scrub:1}});
   gsap.set('.cl1',{yPercent:110});gsap.set('#wipe',{clipPath:'circle(0% at 50% 62%)'});
   tl.to('.ci',{clipPath:'inset(0% 0% 0% 0% round 0px)',duration:2})
@@ -285,7 +696,7 @@ function init(){
     .from('.wm',{scale:.86,opacity:0,duration:1.2},4.2)
     .to({},{duration:.8});
 
-  /* BABAK 6: penutup */
+  /* BABAK 7: penutup */
   gsap.from('.eh .ln>span',{yPercent:110,duration:1.3,stagger:.15,ease:'power4.out',scrollTrigger:{trigger:'#s6',start:'top 60%'}});
   gsap.from('.ec .btn',{y:30,opacity:0,duration:.9,stagger:.12,delay:.4,scrollTrigger:{trigger:'#s6',start:'top 50%'}});
 
@@ -294,7 +705,7 @@ function init(){
   if(matchMedia('(hover:hover)').matches){
     const cx=gsap.quickTo(cur,'x',{duration:.25}),cy=gsap.quickTo(cur,'y',{duration:.25});
     addEventListener('mousemove',e=>{cx(e.clientX);cy(e.clientY);cur.style.opacity=1});
-    $$('a,button,.row').forEach(a=>{a.addEventListener('mouseenter',()=>cur.classList.add('big'));a.addEventListener('mouseleave',()=>cur.classList.remove('big'))});
+    $$('a,button,.row,.p-thumb-card').forEach(a=>{a.addEventListener('mouseenter',()=>cur.classList.add('big'));a.addEventListener('mouseleave',()=>cur.classList.remove('big'))});
     $$('[data-mag]').forEach(b=>{const x=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),y=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
       b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();x((e.clientX-r.left-r.width/2)*.3);y((e.clientY-r.top-r.height/2)*.4)});
       b.addEventListener('mouseleave',()=>{x(0);y(0)})})}
