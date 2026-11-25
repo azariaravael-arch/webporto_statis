@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ravael Asarya Rompas — Sebuah Cerita</title>
+<meta name="description" content="Perjalanan Ravael Asarya Rompas dari kelas RPL sampai ruang server: web developer, IT support, dan content creator.">
+<meta name="theme-color" content="#0b0f14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--or:#ff5a14;--ink:#0b0f14;--paper:#efe9dd;--d:'Bricolage Grotesque',system-ui,sans-serif;--s:'Instrument Serif',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--ink);color:var(--paper);font-family:var(--d);font-weight:500;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.wrap{width:min(1280px,100% - 48px);margin-inline:auto}
+.sc{position:relative}
+.serif{font-family:var(--s);font-style:italic;font-weight:400}
+.or{color:var(--or)}
+.wd{display:inline-block}
+.ln{display:block;overflow:hidden}.ln>span{display:block}
+/* progress */
+#top{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--or);transform:scaleX(0);transform-origin:left;z-index:90}
+#dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:80;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+#dots a{display:flex;align-items:center;gap:10px;font-size:.8rem;opacity:.5;transition:.3s}
+#dots a i{width:8px;height:8px;border-radius:50%;background:currentColor;transition:.3s}
+#dots a span{opacity:0;transform:translateX(8px);transition:.3s;white-space:nowrap}
+#dots a:hover,#dots a.on{opacity:1}#dots a.on i{background:var(--or);transform:scale(1.6)}
+#dots a:hover span,#dots a.on span{opacity:1;transform:none}
+.logo{position:fixed;left:24px;top:20px;z-index:80;font-weight:800;letter-spacing:-.03em;mix-blend-mode:difference;color:#fff}
+.cur{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:50%;background:var(--or);pointer-events:none;z-index:200;mix-blend-mode:normal;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .3s;opacity:0}
+.cur.big{width:56px;height:56px;opacity:.35!important}
+/* scene 1 */
+.hero{height:100svh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end}
+.L{position:absolute;will-change:transform}
+.grid1{inset:-10% 0;background:repeating-linear-gradient(90deg,rgba(239,233,221,.06) 0 1px,transparent 1px 9.09%);}
+.sun{width:min(52vw,640px);aspect-ratio:1;border-radius:50%;left:50%;top:38%;margin:-26vw 0 0 -26vw;background:radial-gradient(circle at 40% 35%,#ff9a62,var(--or) 50%,#7a2200)}
+.big{left:0;right:0;top:12%;text-align:center;font-weight:800;font-size:clamp(4.4rem,23vw,24rem);line-height:.8;letter-spacing:-.06em;white-space:nowrap}
+.big .ln{display:inline-block;padding:0 .02em}
+.pt{left:50%;bottom:0;width:clamp(230px,31vw,440px);aspect-ratio:3/4;margin-left:calc(clamp(230px,31vw,440px)/-2);overflow:hidden;border-radius:240px 240px 0 0;background:#222}
+.pt img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(1) contrast(1.1)}
+.pt::after{content:"";position:absolute;inset:0;background:linear-gradient(170deg,transparent 50%,rgba(255,90,20,.55));mix-blend-mode:multiply}
+.tk{font-size:.9rem;padding:7px 16px;border:1px solid rgba(239,233,221,.4);border-radius:99px;backdrop-filter:blur(4px)}
+.hc{position:relative;z-index:5;width:100%;padding:0 0 clamp(28px,5vh,56px);display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.hc h2{font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1.1;letter-spacing:-.03em;max-width:430px}
+.hc p{opacity:.7;font-size:1rem;max-width:380px;margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;border-radius:99px;background:var(--or);color:#fff;font-weight:800;transition:background .3s}
+.btn:hover{background:#ff7a3d}.btn.o{background:none;border:1.5px solid currentColor;color:inherit}.btn.o:hover{background:var(--paper);color:var(--ink)}
+/* scene 2 */
+.beg{padding:20vh 0 18vh;overflow:hidden}
+.yr{position:absolute;left:-2vw;top:8vh;font-weight:800;font-size:clamp(8rem,34vw,34rem);line-height:.8;letter-spacing:-.07em;color:transparent;-webkit-text-stroke:2px rgba(239,233,221,.16);white-space:nowrap;user-select:none}
+.bg2{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;position:relative;align-items:start}
+figure{overflow:hidden;background:#222;position:relative}
+figure img{width:100%;height:122%;object-fit:cover}
+.i1{grid-column:1/6;aspect-ratio:3/4;margin-top:10vh;border-radius:6px}
+.nar{grid-column:7/13;padding-top:6vh}
+.nar small{opacity:.6;font-size:.95rem}
+.nt{font-family:var(--s);font-size:clamp(1.8rem,3.5vw,3.3rem);line-height:1.12;margin-top:20px}
+.i2{grid-column:8/12;aspect-ratio:1/1;margin-top:10vh;border-radius:999px}
+/* scene 3 */
+.hz{height:100vh;overflow:hidden;position:relative}
+.tkr{display:flex;height:100%;width:400vw}
+.pn{width:100vw;height:100%;display:flex;align-items:center;justify-content:center;gap:5vw;padding:0 8vw}
+.pn .tx{flex:0 1 38vw}
+.pn .no{font-weight:800;font-size:clamp(5rem,14vw,12rem);line-height:.85;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.pn h3{font-size:clamp(2rem,4.4vw,4.2rem);letter-spacing:-.04em;line-height:1;margin:14px 0 14px}
+.pn p{max-width:420px;opacity:.75}.pn small{color:var(--or);font-weight:800}
+.pn figure{flex:0 0 40vw;height:68vh;border-radius:8px}
+.hbar{position:absolute;left:8vw;right:8vw;bottom:5vh;height:2px;background:rgba(11,15,20,.15)}
+.hbar i{display:block;height:100%;background:var(--or);transform:scaleX(0);transform-origin:left}
+.jt{position:absolute;left:8vw;top:12vh;z-index:3;font-size:.95rem;opacity:.7}
+/* scene 4 */
+.exp{padding:18vh 0}
+.eg{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw}
+.stk{position:sticky;top:16vh;align-self:start}
+.stk h2{font-size:clamp(2.4rem,5vw,4.6rem);letter-spacing:-.045em;line-height:.95}
+.pv{margin-top:34px;aspect-ratio:4/3;width:min(100%,420px);border-radius:8px}
+.pv img{height:100%}
+.row{padding:34px 0;border-top:1px solid rgba(239,233,221,.2);position:relative;opacity:.35;transition:opacity .4s;cursor:pointer}
+.row:last-child{border-bottom:1px solid rgba(239,233,221,.2)}
+.row.on{opacity:1}.row.on h3{color:var(--or)}
+.row h3{font-size:clamp(1.9rem,4.2vw,3.8rem);letter-spacing:-.04em;line-height:1;transition:color .3s,transform .4s}
+.row.on h3{transform:translateX(14px)}
+.row small{display:block;margin-top:10px;font-size:.92rem;color:var(--or)}
+.row p{max-width:520px;margin-top:10px;opacity:.8;max-height:0;overflow:hidden;transition:max-height .5s}
+.row.on p{max-height:160px}
+/* scene 5 */
+.cl{height:100vh;overflow:hidden}
+.ci{position:absolute;inset:0;clip-path:inset(22% 18% 22% 18% round 20px)}
+.ci img{width:100%;height:100%;object-fit:cover;filter:grayscale(.4)}
+.ci::after{content:"";position:absolute;inset:0;background:rgba(11,15,20,.5)}
+.cx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:.1em;font-weight:800;font-size:clamp(2.4rem,8vw,8rem);letter-spacing:-.05em;line-height:.95;z-index:3;padding:0 24px;color:#fff}
+.wipe{position:absolute;inset:0;background:var(--or);color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;padding:0 6vw;z-index:4}
+.wipe p{font-weight:800;font-size:clamp(2.2rem,7.4vw,7.6rem);letter-spacing:-.05em;line-height:.95;max-width:1200px}
+.wipe .serif{letter-spacing:-.02em}
+/* scene 6 */
+.end{padding:22vh 0 0;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between}
+.end h2{font-size:clamp(2.6rem,9vw,9rem);letter-spacing:-.055em;line-height:.9}
+.ec{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.end footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:60px 0 28px;font-size:.9rem;opacity:.65}
+/* static / reduced motion */
+html.static .hz{height:auto}html.static .tkr{width:auto;flex-direction:column}html.static .pn{width:auto;flex-direction:column;padding:60px 24px;height:auto}
+html.static .pn figure{flex:none;width:100%;height:50vh}html.static .row p{max-height:none}html.static .cl{height:auto}
+html.static .ci,html.static .wipe{position:relative;clip-path:none;height:70vh}html.static .cx{position:relative;padding:40px 0}html.static .cx{color:inherit}
+/* tablet */
+@media(max-width:1024px){
+#dots span{display:none}.nar{grid-column:6/13}.i1{grid-column:1/6}.i2{grid-column:8/13}
+.pn .tx{flex-basis:44vw}.pn figure{flex-basis:38vw}
+.eg{grid-template-columns:1fr}.stk{position:relative;top:0}.pv{display:none}.row{opacity:1}.row p{max-height:none}}
+/* phone */
+@media(max-width:700px){
+#dots{display:none}.logo{left:16px}
+.tk.hm{display:none}.hc{flex-direction:column;align-items:flex-start;gap:18px}
+.big{top:10%}.pt{width:62vw;margin-left:-31vw}
+.bg2{grid-template-columns:1fr}.i1,.nar,.i2{grid-column:1}.i1{margin-top:0}.i2{width:70%;margin:0 0 0 auto}
+.hz{height:auto}.tkr{width:auto;flex-direction:column}.pn{width:auto;flex-direction:column;height:auto;padding:70px 24px 30px;align-items:flex-start;gap:26px}
+.pn .tx,.pn figure{flex:none;width:100%}.pn figure{height:46vh}.hbar,.jt{display:none}
+.ci{clip-path:inset(18% 8% 18% 8% round 16px)}
+.btn{width:100%;justify-content:center}.end footer{flex-direction:column}}
+@media(hover:none){.cur{display:none}}
+</style>
+</head>
+<body>
+<div id="top"></div><a href="#s1" class="logo">Ravael</a><div class="cur" id="cur"></div>
+<nav id="dots" aria-label="Babak cerita"></nav>
+
+<main>
+<!-- BABAK 1 -->
+<section class="sc hero" id="s1" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Pembuka">
+  <div class="L grid1" data-d=".1"></div>
+  <div class="L sun" data-d=".25"></div>
+  <h1 class="L big" data-d=".4" aria-label="Ravael"><span class="ln"><span id="bigt">RAVAEL</span></span></h1>
+  <div class="L pt" data-d=".7"><img src="assets/foto diri/Foto diri 1.jpeg" alt="Ravael Asarya Rompas"></div>
+  <span class="L tk" data-d="1.2" style="left:9%;top:34%">Laravel</span>
+  <span class="L tk" data-d="1.5" style="right:11%;top:30%">React JS</span>
+  <span class="L tk hm" data-d="1.0" style="left:16%;top:58%">Odoo 17</span>
+  <span class="L tk hm" data-d="1.35" style="right:15%;top:56%">LAN & Wi-Fi</span>
+  <span class="L tk hm" data-d="1.1" style="left:30%;top:20%">Flutter</span>
+  <div class="wrap hc">
+    <div><h2 class="hl">Setiap sistem punya cerita.<br><span class="serif or">Ini cerita saya.</span></h2><p class="hl">Web developer, IT technical support, dan content creator. Saat ini PKL di Inixindo Bandung.</p></div>
+    <a href="#s2" class="btn hl" data-mag>Temukan ceritanya ↓</a>
+  </div>
+</section>
+
+<!-- BABAK 2 -->
+<section class="sc beg" id="s2" data-bg="#1a130e" data-fg="#efe9dd" data-t="Awal mula">
+  <span class="yr" id="yr" aria-hidden="true">2024</span>
+  <div class="wrap bg2">
+    <figure class="i1" data-fy="-60"><img data-sp="9" src="assets/organisasi/osis 2.jpeg" alt="Kegiatan OSIS" loading="lazy"></figure>
+    <div class="nar"><small>Awal mula</small>
+      <p class="nt" id="nt">Semuanya dimulai tahun 2024, di kelas Rekayasa Perangkat Lunak SMK Bagimu Negeriku. Dari baris kode pertama, saya belajar bahwa sistem yang baik dibuat oleh orang yang mau memperhatikan detail.</p></div>
+    <figure class="i2" data-fy="-110"><img data-sp="14" src="assets/pkl 1/pkl1.1.jpeg" alt="Ruang kerja PKL" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- BABAK 3 -->
+<section class="sc hz" id="s3" data-bg="#efe9dd" data-fg="#0b0f14" data-t="Perjalanan">
+  <p class="jt">Perjalanan · gulir untuk berjalan maju</p>
+  <div class="tkr" id="tkr">
+    <article class="pn"><div class="tx"><div class="no">01</div><h3>Belajar</h3><p>Mulai 2024 di jurusan RPL. Di sinilah dasar pemrograman dan web dibangun, lewat proyek Laravel dan Flutter.</p><small>2024 – 2027</small></div><figure><img data-sp="8" src="assets/kegiatan sekolah/project sekolah.jpeg" alt="Proyek sekolah" loading="lazy"></figure></article>
+    <article class="pn"><div class="tx"><div class="no">02</div><h3>Memimpin</h3><p>Ketua OSIS periode 2024/2025, anggota PMR dan Interact. Komunikasi dan kerja tim terasah di sini.</p><small>OSIS 2024/2025</small></div><figure><img data-sp="8" src="assets/organisasi/osis 1.jpeg" alt="Ketua OSIS" loading="lazy"></figure></article>
+    <article class="pn"><div class="tx"><div class="no">03</div><h3>Membangun</h3><p>PKL di Omahama & CV Boja Alkesindo sebagai programmer dan content creator: website, aplikasi mobile, dan Odoo 17.</p><small>Januari – Juli 2026</small></div><figure><img data-sp="8" src="assets/pkl 2/pkl 2.jpeg" alt="PKL Omahama" loading="lazy"></figure></article>
+    <article class="pn"><div class="tx"><div class="no">04</div><h3>Merawat</h3><p>Kini di Inixindo Bandung: sistem web, perangkat keras, jaringan, dan konten YouTube.</p><small>Juli 2026 – sekarang</small></div><figure><img data-sp="8" src="assets/pkl 1/pkl 1.jpeg" alt="PKL Inixindo" loading="lazy"></figure></article>
+  </div>
+  <div class="hbar"><i id="hbar"></i></div>
+</section>
+
+<!-- BABAK 4 -->
+<section class="sc exp" id="s4" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Pengalaman">
+  <div class="wrap eg">
+    <div class="stk"><h2>Yang saya <span class="serif or">kerjakan</span> sehari-hari.</h2>
+      <figure class="pv"><img id="pvi" src="assets/kegiatan sekolah/project sekolah 2.jpeg" alt="Pratinjau bidang kerja"></figure></div>
+    <div id="rows">
+      <div class="row" data-img="assets/kegiatan sekolah/project sekolah 2.jpeg"><h3>Web & Mobile</h3><small>Laravel · React JS · Flutter</small><p>Website dan aplikasi mobile untuk kebutuhan operasional dan klien, dengan database MySQL dan PostgreSQL.</p></div>
+      <div class="row" data-img="assets/pkl 2/pkl 2.jpeg"><h3>Sistem Odoo 17</h3><small>Omahama · Inixindo Bandung</small><p>Memelihara dan mengelola sistem informasi berbasis web perusahaan.</p></div>
+      <div class="row" data-img="assets/pkl 1/pkl1.1.jpeg"><h3>Perangkat keras</h3><small>Instalasi · Troubleshooting</small><p>Instalasi dan pemeliharaan komputer agar operasional kantor tidak berhenti.</p></div>
+      <div class="row" data-img="assets/pkl 1/pkl 1.3.jpeg"><h3>Jaringan kantor</h3><small>LAN & Wi-Fi</small><p>Merawat infrastruktur jaringan yang menopang seluruh sistem IT perusahaan.</p></div>
+      <div class="row" data-img="assets/pkl 1/pkl 1.jpeg"><h3>Konten YouTube</h3><small>Inixindo Bandung</small><p>Produksi dan pengelolaan kanal YouTube perusahaan dengan CapCut dan Canva.</p></div>
+      <div class="row" data-img="assets/pkl 2/pkl 2.jpeg"><h3>Media sosial & data</h3><small>Omahama · CV Boja Alkesindo</small><p>Konten media sosial perusahaan, serta pengelolaan inventaris dan data.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BABAK 5 -->
+<section class="sc cl" id="s5" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Klimaks">
+  <div class="ci"><img src="assets/pkl 1/pkl 1.jpeg" alt="Ravael bekerja" loading="lazy"></div>
+  <div class="cx"><span class="ln"><span class="cl1">Satu orang.</span></span><span class="ln"><span class="cl1">Kode, kabel,</span></span><span class="ln"><span class="cl1">dan konten.</span></span></div>
+  <div class="wipe" id="wipe"><p class="wm">Membangun yang <span class="serif">terlihat.</span> Merawat yang <span class="serif">tidak terlihat.</span></p></div>
+</section>
+
+<!-- BABAK 6 -->
+<section class="sc end" id="s6" data-bg="#0b0f14" data-fg="#efe9dd" data-t="Penutup">
+  <div class="wrap">
+    <h2 class="eh"><span class="ln"><span>Cerita berikutnya</span></span><span class="ln"><span class="serif or">dimulai dari proyekmu.</span></span></h2>
+    <div class="ec">
+      <a class="btn" data-mag href="https://wa.me/6281242674911?text=Halo%20Ravael%2C%20saya%20ingin%20berdiskusi%20soal%20proyek." target="_blank" rel="noopener">Chat WhatsApp</a>
+      <a class="btn o" data-mag href="mailto:azariaravel@gmail.com">azariaravel@gmail.com</a>
+      <a class="btn o" data-mag href="CV Ravael.pdf" download="CV Ravael.pdf">Unduh CV</a>
+    </div>
+  </div>
+  <footer class="wrap"><span>© <span id="y"></span> Ravael Asarya Rompas · Semarang</span><span><a href="https://github.com/azariaravael-arch" target="_blank" rel="noopener">GitHub</a> · <a href="#s1">Kembali ke awal ↑</a></span></footer>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+$('#y').textContent=new Date().getFullYear();
+const secs=$$('.sc'),dots=$('#dots');
+dots.innerHTML=secs.map(s=>`<a href="#${s.id}"><span>${s.dataset.t}</span><i></i></a>`).join('');
+const dl=$$('a',dots);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!window.gsap||!window.ScrollTrigger||reduce){document.documentElement.classList.add('static');dl[0].classList.add('on')}
+else init();
+
+function split(el){el.innerHTML=el.textContent.trim().split(/\s+/).map(w=>`<span class="wd">${w}</span>`).join(' ');return $$('.wd',el)}
+
+function init(){
+  gsap.registerPlugin(ScrollTrigger);
+  let lenis;
+  if(window.Lenis){lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=$(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t)}}))}
+
+  /* progress + scene background */
+  gsap.to('#top',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:true}});
+  secs.forEach((s,i)=>ScrollTrigger.create({trigger:s,start:'top 55%',end:'bottom 55%',onToggle:v=>{if(!v.isActive)return;
+    gsap.to(document.body,{backgroundColor:s.dataset.bg,color:s.dataset.fg,duration:.9,ease:'power2.out'});dl.forEach((d,k)=>d.classList.toggle('on',k===i))}}));
+
+  /* BABAK 1: entrance + depth */
+  const big=$('#bigt');big.innerHTML=[...big.textContent].map(c=>`<span class="wd">${c}</span>`).join('');
+  gsap.timeline({defaults:{ease:'power4.out'}})
+    .from('.wd',{yPercent:110,duration:1.2,stagger:.06},0)
+    .from('.pt',{yPercent:30,opacity:0,duration:1.4},.2)
+    .from('.sun',{scale:.4,opacity:0,duration:1.6},0)
+    .from('.tk',{opacity:0,scale:.6,duration:.8,stagger:.1},.8)
+    .from('.hl',{y:30,opacity:0,duration:1,stagger:.12},1);
+  const mm=gsap.matchMedia();
+  mm.add('(min-width:701px)',()=>{
+    $$('.L').forEach(l=>{const d=+l.dataset.d;
+      gsap.to(l,{y:(.6-d)*300,ease:'none',scrollTrigger:{trigger:'#s1',start:'top top',end:'bottom top',scrub:true}})});
+    const mx=$$('.L').map(l=>gsap.quickTo(l,'x',{duration:1.1,ease:'power3'}));
+    const mv=e=>{const k=e.clientX/innerWidth-.5;$$('.L').forEach((l,i)=>mx[i](k*-50*(+l.dataset.d)))};
+    addEventListener('mousemove',mv);return()=>removeEventListener('mousemove',mv)});
+
+  /* BABAK 2: narasi + kedalaman */
+  const ws=split($('#nt'));
+  gsap.fromTo(ws,{opacity:.12},{opacity:1,stagger:.12,ease:'none',scrollTrigger:{trigger:'#nt',start:'top 80%',end:'bottom 50%',scrub:true}});
+  gsap.to('#yr',{xPercent:-14,ease:'none',scrollTrigger:{trigger:'#s2',start:'top bottom',end:'bottom top',scrub:true}});
+  $$('[data-sp]').forEach(im=>{const a=+im.dataset.sp;gsap.fromTo(im,{yPercent:-a},{yPercent:a,ease:'none',scrollTrigger:{trigger:im.parentElement,start:'top bottom',end:'bottom top',scrub:true}})});
+  mm.add('(min-width:701px)',()=>{$$('[data-fy]').forEach(f=>gsap.to(f,{y:+f.dataset.fy,ease:'none',scrollTrigger:{trigger:'#s2',start:'top bottom',end:'bottom top',scrub:true}}))});
+
+  /* BABAK 3: perjalanan horizontal */
+  mm.add('(min-width:701px)',()=>{
+    const t=$('#tkr'),dist=()=>t.scrollWidth-innerWidth;
+    gsap.to(t,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#s3',pin:true,scrub:.6,start:'top top',end:()=>'+='+dist(),invalidateOnRefresh:true,
+      onUpdate:s=>$('#hbar').style.transform=`scaleX(${s.progress})`}});
+  });
+  mm.add('(max-width:700px)',()=>{$$('.pn').forEach(p=>gsap.from(p.children,{y:40,opacity:0,duration:.9,stagger:.15,scrollTrigger:{trigger:p,start:'top 80%'}}))});
+
+  /* BABAK 4: daftar bidang kerja */
+  const rows=$$('.row'),pvi=$('#pvi');
+  const act=r=>{if(r.classList.contains('on'))return;rows.forEach(x=>x.classList.toggle('on',x===r));
+    if(matchMedia('(min-width:1025px)').matches)gsap.fromTo(pvi,{opacity:0,scale:1.12},{opacity:1,scale:1,duration:.7,ease:'power3.out',onStart:()=>pvi.src=r.dataset.img})};
+  rows.forEach(r=>{ScrollTrigger.create({trigger:r,start:'top 58%',end:'bottom 58%',onToggle:v=>v.isActive&&act(r)});r.addEventListener('click',()=>act(r));
+    gsap.from(r,{y:60,duration:1,ease:'power3.out',scrollTrigger:{trigger:r,start:'top 92%'}})});
+
+  /* BABAK 5: klimaks */
+  const tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#s5',start:'top top',end:'+=300%',pin:true,scrub:1}});
+  gsap.set('.cl1',{yPercent:110});gsap.set('#wipe',{clipPath:'circle(0% at 50% 62%)'});
+  tl.to('.ci',{clipPath:'inset(0% 0% 0% 0% round 0px)',duration:2})
+    .fromTo('.ci img',{scale:1.45},{scale:1,duration:2.4},0)
+    .to('.cl1',{yPercent:0,stagger:.45,duration:.7,ease:'power3.out'},1.3)
+    .to('.cx',{scale:1.18,duration:1.8},2.2)
+    .to('#wipe',{clipPath:'circle(150% at 50% 62%)',duration:1.8},3.4)
+    .to('.cx',{opacity:0,duration:.6},3.8)
+    .from('.wm',{scale:.86,opacity:0,duration:1.2},4.2)
+    .to({},{duration:.8});
+
+  /* BABAK 6: penutup */
+  gsap.from('.eh .ln>span',{yPercent:110,duration:1.3,stagger:.15,ease:'power4.out',scrollTrigger:{trigger:'#s6',start:'top 60%'}});
+  gsap.from('.ec .btn',{y:30,opacity:0,duration:.9,stagger:.12,delay:.4,scrollTrigger:{trigger:'#s6',start:'top 50%'}});
+
+  /* kursor + tombol magnetis */
+  const cur=$('#cur');
+  if(matchMedia('(hover:hover)').matches){
+    const cx=gsap.quickTo(cur,'x',{duration:.25}),cy=gsap.quickTo(cur,'y',{duration:.25});
+    addEventListener('mousemove',e=>{cx(e.clientX);cy(e.clientY);cur.style.opacity=1});
+    $$('a,button,.row').forEach(a=>{a.addEventListener('mouseenter',()=>cur.classList.add('big'));a.addEventListener('mouseleave',()=>cur.classList.remove('big'))});
+    $$('[data-mag]').forEach(b=>{const x=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),y=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
+      b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();x((e.clientX-r.left-r.width/2)*.3);y((e.clientY-r.top-r.height/2)*.4)});
+      b.addEventListener('mouseleave',()=>{x(0);y(0)})})}
+  addEventListener('load',()=>ScrollTrigger.refresh());
+}
+$$('img').forEach(i=>i.addEventListener('error',()=>{i.style.visibility='hidden';i.parentElement.style.background='linear-gradient(135deg,#ff5a14,#0b0f14)'}));
+</script>
+</body>
+</html>
